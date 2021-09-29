@@ -13,6 +13,15 @@ What's covered:
 
 ## Configuration
 
+### General
+
+If you want to disable tracing via configuration (if you need to turn it off for a particular environment, for example) like so:
+
+``` elixir
+config :prima_opentelemetry_ex, :enabled, false
+```
+
+
 ### GraphQL
 
 You can change the default span name and choose which informations about your graphql you want traced; e.g.
