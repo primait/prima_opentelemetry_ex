@@ -1,21 +1,24 @@
 # PrimaOpentelemetryEx
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `prima_opentelemetry_ex` to your list of dependencies in `mix.exs`:
-
+This is your one-stop source of all things opentelemetry in elixir.
+You can stop worrying about getting headaches figuring out which opentelemetry_beam library you need or resolving dependencies conflicts; just add
 ```elixir
-def deps do
-  [
-    {:prima_opentelemetry_ex, "~> 0.1.0"}
-  ]
-end
+    {:prima_opentelemetry_ex, git: "git@github.com:primait/prima_opentelemetry_ex.git"}
 ```
+to your dependencies and you are good to go.
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/prima_opentelemetry_ex](https://hexdocs.pm/prima_opentelemetry_ex).
+What's covered:
+- Absinthe
 
+## Configuration
+
+### GraphQL
+
+You can change the default span name and choose which informations about your graphql you want traced; e.g.
+
+``` elixir
+config :prima_opentelemetry_ex, :graphql,
+    span_name: "graphql resolution",
+    trace_request_variables: false
+```
+All the configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see https://github.com/primait/opentelemetry_absinthe#readme
