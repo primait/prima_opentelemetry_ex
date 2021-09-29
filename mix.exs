@@ -20,7 +20,9 @@ defmodule PrimaOpentelemetryEx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:opentelemetry_absinthe, git: "git@github.com:primait/opentelemetry_absinthe.git", branch: "wizard"}
+      {:opentelemetry, "~> 1.0.0-rc.1"},
+      {:opentelemetry_absinthe, git: "git@github.com:primait/opentelemetry_absinthe.git", branch: "wizard"},
+      {:opentelemetry_exporter, "~> 1.0.0-rc.1"}
     ]
   end
 end
