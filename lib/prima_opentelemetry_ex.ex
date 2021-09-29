@@ -8,7 +8,8 @@ defmodule PrimaOpentelemetryEx do
   You are supposed to call it in your application start function.
   """
   def setup() do
-    OpentelemetryAbsinthe.Instrumentation.setup()
+    
+    :prima_opentelemetry_ex |> Application.get_env(:graphql) |> OpentelemetryAbsinthe.Instrumentation.setup()
 
     :ok
   end
