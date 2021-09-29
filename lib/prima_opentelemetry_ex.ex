@@ -4,15 +4,12 @@ defmodule PrimaOpentelemetryEx do
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> PrimaOpentelemetryEx.hello()
-      :world
-
+  Setup all the opentelemetry instrumentation.
+  You are supposed to call it in your application start function.
   """
-  def hello do
-    :world
+  def setup() do
+    OpentelemetryAbsinthe.Instrumentation.setup()
+
+    :ok
   end
 end
