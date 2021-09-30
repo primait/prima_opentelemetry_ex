@@ -14,9 +14,24 @@ defmodule PrimaOpentelemetryEx do
     :ok
   end
 
-  def instrument do
+  defp instrument do
     :prima_opentelemetry_ex
       |> Application.get_env(:graphql, [])
       |> OpentelemetryAbsinthe.Instrumentation.setup()
+    
+    :prima_opentelemetry_ex
+      |> Application.get_env(:repositories, [])
+      |> Enum.each(&instrument_repo/1)
+  end
+
+  defp instrument_repo(repo) do
+    repo |> telemetry_prefix() |> OpentelemetryEcto.setup()
+  end
+
+  # taken from https://github.com/elixir-ecto/ecto/blob/42e3e693aa48da318e6fc202ee0fd18cb5da1f36/lib/ecto/repo/supervisor.ex#L35
+  defp telemetry_prefix(repo) do
+    repo
+    |> Module.split()
+    |> Enum.map(& &1 |> Macro.underscore() |> String.to_atom())
   end
 end

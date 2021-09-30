@@ -13,6 +13,7 @@ to your dependencies and you are good to go.
 What's covered:
 - Plug - to link your phoenix/plug handled requests with client spans as parents
 - Absinthe - to trace your GraphQL resolutions in a single span
+- Ecto - to trace your database transactions in a single span
 
 
 ## Usage
@@ -23,8 +24,8 @@ To start collecting traces just put
 PrimaOpentelemetryEx.setup()
 ```
 in your application start function.
-To actually emit server spans (from plug) you need to add `Teleplug` to your plug pipeline either in your phoenix endpoint module or in every pipeline you want to trace (contained in your router module if you are using phoenix).
 
+To actually emit server spans (from plug) you need to add `Teleplug` to your plug pipeline either in your phoenix endpoint module or in every pipeline you want to trace (contained in your router module if you are using phoenix).
 e.g.
 
 ``` elixir
@@ -32,6 +33,13 @@ pipeline :example do
     plug Teleplug
     plug Plug.Logger
 end
+```
+
+For database traces you need to tell `prima_opentelemetry_ex` which repositories it needs to trace; you can do it in your configuration using the `:repositories` key (it's supposed to be a list of elixir modules).
+e.g.
+
+``` elixir
+config :prima_opentelemetry_ex, :repositories, [YourApp.Repo]
 ```
 
 GraphQL spans are emitted automatically.
@@ -57,3 +65,7 @@ config :prima_opentelemetry_ex, :graphql,
     trace_request_variables: false
 ```
 All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see https://github.com/primait/opentelemetry_absinthe#readme
+
+### Database
+
+You
