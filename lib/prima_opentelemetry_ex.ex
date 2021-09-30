@@ -34,22 +34,25 @@ defmodule PrimaOpentelemetryEx do
   end
 
   defp set_opentelemetry_env do
-    endpoint = Application.get_env(:prima_opentelemetry_ex, :endpoint, [])
-    protocol = Keyword.get(endpoint, :protocol, :http)
-    host = Keyword.get(endpoint, :host, "jaeger")
-    port = Keyword.get(endpoint, :port, 55681)
+    # set opentelemetry configuration only if NOT already set by something else
+    with [] <- Application.get_env(:opentelemetry, :processors) do
+      endpoint = Application.get_env(:prima_opentelemetry_ex, :endpoint, [])
+      protocol = Keyword.get(endpoint, :protocol, :http)
+      host = Keyword.get(endpoint, :host, "jaeger")
+      port = Keyword.get(endpoint, :port, 55681)
 
-    Application.put_env(
-      :opentelemetry,
-      :processors,
-      [
-        {:otel_batch_processor,
-         %{
-           exporter: {:opentelemetry_exporter, %{endpoints: [{protocol, host, port, []}]}}
-         }}
-      ],
-      permanent: true
-    )
+      Application.put_env(
+        :opentelemetry,
+        :processors,
+        [
+          {:otel_batch_processor,
+           %{
+             exporter: {:opentelemetry_exporter, %{endpoints: [{protocol, host, port, []}]}}
+           }}
+        ],
+        permanent: true
+      )
+    end
   end
 
   # taken from https://github.com/elixir-ecto/ecto/blob/42e3e693aa48da318e6fc202ee0fd18cb5da1f36/lib/ecto/repo/supervisor.ex#L35
