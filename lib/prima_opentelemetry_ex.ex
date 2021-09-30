@@ -22,6 +22,8 @@ defmodule PrimaOpentelemetryEx do
     :prima_opentelemetry_ex
       |> Application.get_env(:repositories, [])
       |> Enum.each(&instrument_repo/1)
+
+    Telepoison.setup()
   end
 
   defp instrument_repo(repo) do

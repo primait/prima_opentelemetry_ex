@@ -33,6 +33,8 @@ e.g.
 Telepoison.post("https://example.com/", "{'example': 1}", %{"content-type" => "application/json"}, [timeout: 5_000])
 ```
 
+For more informations see [telepoison usage](https://github.com/primait/telepoison#usage)
+
 To emit server spans (from plug) you need to add `Teleplug` to your plug pipeline either in your phoenix endpoint module or in every pipeline you want to trace (contained in your router module if you are using phoenix).
 e.g.
 
@@ -72,5 +74,5 @@ config :prima_opentelemetry_ex, :graphql,
     span_name: "graphql resolution",
     trace_request_variables: false
 ```
-All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see https://github.com/primait/opentelemetry_absinthe#readme
+All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see [opentelemetry_absinthe readme](https://github.com/primait/opentelemetry_absinthe#readme)
 
