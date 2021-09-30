@@ -11,6 +11,7 @@ Just add
 to your dependencies and you are good to go.
 
 What's covered:
+- HTTPoison - to trace the http calls you make to external system and to pass along the trace context
 - Plug - to link your phoenix/plug handled requests with client spans as parents
 - Absinthe - to trace your GraphQL resolutions in a single span
 - Ecto - to trace your database transactions in a single span
@@ -25,7 +26,14 @@ PrimaOpentelemetryEx.setup()
 ```
 in your application start function.
 
-To actually emit server spans (from plug) you need to add `Teleplug` to your plug pipeline either in your phoenix endpoint module or in every pipeline you want to trace (contained in your router module if you are using phoenix).
+To trace your outgoing http calls you need to use the `Telepoison` module as a drop-in replacement for `HTTPoison`.
+e.g.
+
+``` elixir
+Telepoison.post("https://example.com/", "{'example': 1}", %{"content-type" => "application/json"}, [timeout: 5_000])
+```
+
+To emit server spans (from plug) you need to add `Teleplug` to your plug pipeline either in your phoenix endpoint module or in every pipeline you want to trace (contained in your router module if you are using phoenix).
 e.g.
 
 ``` elixir
@@ -66,6 +74,3 @@ config :prima_opentelemetry_ex, :graphql,
 ```
 All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see https://github.com/primait/opentelemetry_absinthe#readme
 
-### Database
-
-You
