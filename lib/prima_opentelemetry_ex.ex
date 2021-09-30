@@ -36,7 +36,7 @@ defmodule PrimaOpentelemetryEx do
 
   def register_resource_detector do
     detectors = Application.get_env(:opentelemetry, :resource_detectors, [])
-    Application.put_env(:opentelemetry, :resource_detectors, detectors ++ [:opentelemetry, :resource_detectors,], permanent: true)
+    Application.put_env(:opentelemetry, :resource_detectors, detectors ++ [PrimaOpentelemetryEx.ResourceDetector], permanent: true)
   end
 
   defp set_processor do
