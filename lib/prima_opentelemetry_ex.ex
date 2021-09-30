@@ -39,10 +39,15 @@ defmodule PrimaOpentelemetryEx do
     host = Keyword.get(endpoint, :host, "jaeger")
     port = Keyword.get(endpoint, :port, 55681)
 
-    Application.put_env(:opentelemetry, :processors,
-      otel_batch_processor: %{
-        exporter: {:opentelemetry_exporter, %{endpoints: [{protocol, host, port, []}]}}
-      },
+    Application.put_env(
+      :opentelemetry,
+      :processors,
+      [
+        {:otel_batch_processor,
+         %{
+           exporter: {:opentelemetry_exporter, %{endpoints: [{protocol, host, port, []}]}}
+         }}
+      ],
       permanent: true
     )
   end
