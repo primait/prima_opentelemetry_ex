@@ -10,7 +10,7 @@ defmodule PrimaOpentelemetryEx do
   def setup do
     if Application.get_env(:prima_opentelemetry_ex, :enabled, true) do
       instrument()
-      set_opentelemetry_env()
+      set_processor()
       Application.ensure_all_started(:opentelemetry_exporter)
     end
 
@@ -33,8 +33,8 @@ defmodule PrimaOpentelemetryEx do
     repo |> telemetry_prefix() |> OpentelemetryEcto.setup()
   end
 
-  defp set_opentelemetry_env do
-    # set opentelemetry configuration only if NOT already set by something else
+  defp set_processor do
+    # set opentelemetry processors configuration only if NOT already set by something else
     with [] <- Application.get_env(:opentelemetry, :processors) do
       endpoint = Application.get_env(:prima_opentelemetry_ex, :endpoint, [])
       protocol = Keyword.get(endpoint, :protocol, :http)
