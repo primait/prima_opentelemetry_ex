@@ -11,7 +11,7 @@ defmodule PrimaOpentelemetryEx do
     if Application.get_env(:prima_opentelemetry_ex, :enabled, true) do
       instrument()
       set_opentelemetry_env()
-      Application.start(:opentelemetry_exporter)
+      Application.ensure_all_started(:opentelemetry_exporter) |> IO.inspect()
     end
 
     :ok
