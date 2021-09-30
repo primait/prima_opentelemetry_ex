@@ -21,7 +21,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
   defp deps do
     [
       {:opentelemetry, "~> 1.0.0-rc.1"},
-      {:opentelemetry_absinthe, git: "git@github.com:primait/opentelemetry_absinthe.git", branch: "wizard"},
+      {:opentelemetry_absinthe, "~> 1.0.0-rc.4"},
       {:opentelemetry_exporter, "~> 1.0.0-rc.1"}
     ]
   end
