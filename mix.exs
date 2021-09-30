@@ -22,7 +22,8 @@ defmodule PrimaOpentelemetryEx.MixProject do
     [
       {:opentelemetry, "~> 1.0.0-rc.1"},
       {:opentelemetry_absinthe, "~> 1.0.0-rc.4"},
-      {:opentelemetry_exporter, "~> 1.0.0-rc.1"}
+      {:opentelemetry_exporter, "~> 1.0.0-rc.1"},
+      {:teleplug, "~> 1.0.0-rc.2", github: "primait/teleplug"}
     ]
   end
 end
