@@ -65,6 +65,26 @@ If you want to disable tracing via configuration (if you need to turn it off for
 config :prima_opentelemetry_ex, :enabled, false
 ```
 
+To configure the endpoint to send traces to, you can use the `:endpoint` configuration key to set, protocol, host and port of the destination endpoint (agent or collector).
+In this example you can see the default value for every configuration:
+
+``` elixir
+config :prima_opentelemetry_ex, :endpoint,
+    protocol: :http,
+    host: "jaeger",
+    port: 55681
+```
+
+These values get used to build the configuration for the opentelemetry_exporter (through a batch processor). If you want to have a bit more freedom and set opentelemetry configuration by yourself feel free to do so, it won't get overwritten.
+Example opentelemetry configuration:
+
+``` elixir
+config :opentelemetry, :processors,
+  otel_batch_processor: %{
+    exporter: {:opentelemetry_exporter, %{endpoints: [{:http, "jaeger", 55681, []}]}}
+  }
+```
+
 ### GraphQL
 
 You can change the default span name and choose which informations about your graphql you want traced; e.g.
