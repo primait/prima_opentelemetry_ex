@@ -33,7 +33,7 @@ e.g.
 Telepoison.post("https://example.com/", "{'example': 1}", %{"content-type" => "application/json"}, [timeout: 5_000])
 ```
 
-For more informations see [telepoison usage](https://github.com/primait/telepoison#usage)
+For more informations see telepoison [usage](https://github.com/primait/telepoison#usage)
 
 To emit server spans (from plug) you need to add `Teleplug` to your plug pipeline either in your phoenix endpoint module or in every pipeline you want to trace (contained in your router module if you are using phoenix).
 e.g.
@@ -47,7 +47,7 @@ end
 
 GraphQL and database spans are emitted automatically.
 
-To see emitted traces on your local dev machine, you can use [jaeger all-in-one image](https://hub.docker.com/r/jaegertracing/opentelemetry-all-in-one/).
+To see emitted traces on your local dev machine, you can use jaeger all-in-one [image](https://hub.docker.com/r/jaegertracing/opentelemetry-all-in-one/).
 
 
 NOTE: This is a discontinued jaeger image but it exposes the otel collector (that is compatible with the exporter `prima_opentelemetry_ex` uses).
@@ -61,7 +61,7 @@ To add it to your local docker compose simply add a service (which your web cont
       - 16686:16686
 ```
 
-You can then use the [jaeger ui](http://localhost:16686/search) to search for your traces.
+You can then use the jaeger [UI](http://localhost:16686/search) to search for your traces.
 
 Be advised that `prima_opentelemetry_ex` uses ENV vars to set service name and version inside the exported traces. Those values are important, for example, to make datadog correctly recognize services and their relative deployments (through version tracking); the two ENV var currently used are:
 - `APP_NAME` for service name
@@ -101,7 +101,7 @@ If you want to disable tracing via configuration (if you need to turn it off for
 config :prima_opentelemetry_ex, :enabled, false
 ```
 
-To configure the endpoint to send traces to, you can use the `:endpoint` configuration key to set, protocol, host and port of the destination endpoint (agent or collector).
+To configure the endpoint to send traces to, you can use the `:endpoint` configuration key to set protocol, host and port of the destination endpoint (agent or collector).
 In this example you can see the default value for every configuration:
 
 ``` elixir
@@ -130,5 +130,5 @@ config :prima_opentelemetry_ex, :graphql,
     span_name: "graphql resolution",
     trace_request_variables: false
 ```
-All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see [opentelemetry_absinthe readme](https://github.com/primait/opentelemetry_absinthe#readme)
+All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see opentelemetry_absinthe [readme](https://github.com/primait/opentelemetry_absinthe#readme)
 
