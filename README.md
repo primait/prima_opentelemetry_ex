@@ -5,14 +5,14 @@ You can stop getting headaches figuring out which opentelemetry_beam library you
 Just add
 
 ```elixir
-    {:prima_opentelemetry_ex, git: "git@github.com:primait/prima_opentelemetry_ex.git"}
+    {:prima_opentelemetry_ex, "~> 0.1", github: "primait/prima_opentelemetry_ex"}
 ```
 
 to your dependencies and you are good to go.
 
 What's covered:
 - HTTPoison - to trace the http calls you make to external system and to pass along the trace context
-- Plug - to link your phoenix/plug handled requests with client spans as parents
+- Plug - to link your phoenix/plug handled requests with their http clients traces
 - Absinthe - to trace your GraphQL resolutions in a single span
 - Ecto - to trace your database transactions in a single span
 
@@ -46,6 +46,49 @@ end
 ```
 
 GraphQL and database spans are emitted automatically.
+
+To see emitted traces on your local dev machine, you can use [jaeger all-in-one image](https://hub.docker.com/r/jaegertracing/opentelemetry-all-in-one/).
+
+
+NOTE: This is a discontinued jaeger image but it exposes the otel collector (that is compatible with the exporter `prima_opentelemetry_ex` uses).
+
+To add it to your local docker compose simply add a service (which your web container should depend on):
+
+``` yaml
+  jaeger:
+    image: jaegertracing/opentelemetry-all-in-one:latest
+    ports:
+      - 16686:16686
+```
+
+You can then use the [jaeger ui](http://localhost:16686/search) to search for your traces.
+
+Be advised that `prima_opentelemetry_ex` uses ENV vars to set service name and version inside the exported traces. Those values are important, for example, to make datadog correctly recognize services and their relative deployments (through version tracking); the two ENV var currently used are:
+- `APP_NAME` for service name
+- `VERSION` for service version
+
+These are supposed to be correctly set up inside prima containers in production; if you want to you can set them up for local development through docker-compose, for example:
+
+``` yaml
+services:
+  web:
+    build: .
+    volumes:
+      - "~/.ssh:/home/app/.ssh"
+      - "~/.aws:/home/app/.aws"
+      - "~/.gitconfig:/home/app/.gitconfig"
+      - .:$PWD
+    ports:
+      - 230:4000
+    depends_on:
+      - jaeger
+    working_dir: $PWD
+    environment:
+      APP_NAME: MY_SERVICE_NAME
+      VERSION: 0.0.0-dev
+    env_file:
+      - biscuit.env
+```
 
 
 ## Configuration
