@@ -45,14 +45,7 @@ pipeline :example do
 end
 ```
 
-For database traces you need to tell `prima_opentelemetry_ex` which repositories it needs to trace; you can do it in your configuration using the `:repositories` key (it's supposed to be a list of elixir modules).
-e.g.
-
-``` elixir
-config :prima_opentelemetry_ex, :repositories, [YourApp.Repo]
-```
-
-GraphQL spans are emitted automatically.
+GraphQL and database spans are emitted automatically.
 
 
 ## Configuration

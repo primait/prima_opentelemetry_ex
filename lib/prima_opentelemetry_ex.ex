@@ -19,24 +19,36 @@ defmodule PrimaOpentelemetryEx do
   end
 
   defp instrument do
+    Telepoison.setup()
+
     :prima_opentelemetry_ex
     |> Application.get_env(:graphql, [])
     |> OpentelemetryAbsinthe.Instrumentation.setup()
 
-    :prima_opentelemetry_ex
-    |> Application.get_env(:repositories, [])
-    |> Enum.each(&instrument_repo/1)
-
-    Telepoison.setup()
+    :telemetry.attach(
+      "repo-init-handler",
+      [:ecto, :repo, :init],
+      &instrument_repo/4,
+      %{}
+    )
   end
 
-  defp instrument_repo(repo) do
-    repo |> telemetry_prefix() |> OpentelemetryEcto.setup()
+  defp instrument_repo(_event, _measurements, metadata, _config) do
+    metadata
+    |> Map.fetch!(:opts)
+    |> Keyword.fetch!(:telemetry_prefix)
+    |> OpentelemetryEcto.setup()
   end
 
   def register_resource_detector do
     detectors = Application.get_env(:opentelemetry, :resource_detectors, [])
-    Application.put_env(:opentelemetry, :resource_detectors, detectors ++ [PrimaOpentelemetryEx.ResourceDetector], permanent: true)
+
+    Application.put_env(
+      :opentelemetry,
+      :resource_detectors,
+      detectors ++ [PrimaOpentelemetryEx.ResourceDetector],
+      permanent: true
+    )
   end
 
   defp set_processor do
@@ -59,12 +71,5 @@ defmodule PrimaOpentelemetryEx do
         permanent: true
       )
     end
-  end
-
-  # taken from https://github.com/elixir-ecto/ecto/blob/42e3e693aa48da318e6fc202ee0fd18cb5da1f36/lib/ecto/repo/supervisor.ex#L35
-  defp telemetry_prefix(repo) do
-    repo
-    |> Module.split()
-    |> Enum.map(&(&1 |> Macro.underscore() |> String.to_atom()))
   end
 end
