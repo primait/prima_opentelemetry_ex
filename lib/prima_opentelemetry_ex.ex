@@ -20,6 +20,7 @@ defmodule PrimaOpentelemetryEx do
 
   defp instrument do
     Telepoison.setup()
+    Teleplug.setup()
 
     :prima_opentelemetry_ex
     |> Application.get_env(:graphql, [])

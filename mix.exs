@@ -4,7 +4,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
   def project do
     [
       app: :prima_opentelemetry_ex,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -22,11 +22,11 @@ defmodule PrimaOpentelemetryEx.MixProject do
   defp deps do
     [
       {:opentelemetry, "~> 1.0.0-rc.1"},
-      {:opentelemetry_absinthe, "~> 1.0.0-rc.4"},
+      {:opentelemetry_absinthe, "~> 1.0.0-rc.5"},
       {:opentelemetry_ecto, "~> 1.0.0-rc.1"},
       {:opentelemetry_exporter, "~> 1.0.0-rc.1"},
       {:telemetry, "~> 0.4"},
-      {:teleplug, "~> 1.0.0-rc.2", github: "primait/teleplug"},
+      {:teleplug, "~> 1.0.0-rc.3", github: "primait/teleplug"},
       {:telepoison, "~> 1.0.0-rc.4"}
     ]
   end
