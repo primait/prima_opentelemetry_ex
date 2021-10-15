@@ -1,6 +1,8 @@
 defmodule PrimaOpentelemetryEx.ResourceDetector do
   @moduledoc """
-  Documentation for `PrimaOpentelemetryEx.ResourceDetector`.
+  Module implementing the `:otel_resource_detector`.
+  It reads `APP_NAME` and `VERSION` env variables to use them as `service.name`
+  and `service.version` tags.
   """
 
   @behaviour :otel_resource_detector
