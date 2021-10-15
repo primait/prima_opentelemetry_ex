@@ -21,13 +21,26 @@ defmodule PrimaOpentelemetryEx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:opentelemetry, "~> 1.0.0-rc.1"},
-      {:opentelemetry_absinthe, "~> 1.0.0-rc.5"},
-      {:opentelemetry_ecto, "~> 1.0.0-rc.1"},
-      {:opentelemetry_exporter, "~> 1.0.0-rc.1"},
-      {:telemetry, "~> 0.4"},
-      {:teleplug, "~> 1.0.0-rc.3", github: "primait/teleplug"},
-      {:telepoison, "~> 1.0.0-rc.4"}
+      {:telemetry, "~> 0.4"}
+    ] ++
+      opentelemetry_core_deps() ++
+      opentelemetry_instrumentation_deps()
+  end
+
+  defp opentelemetry_core_deps do
+    [
+      {:opentelemetry, "1.0.0-rc.2"},
+      {:opentelemetry_api, "1.0.0-rc.2"},
+      {:opentelemetry_exporter, "1.0.0-rc.1"}
+    ]
+  end
+
+  defp opentelemetry_instrumentation_deps do
+    [
+      {:opentelemetry_absinthe, "1.0.0-rc.5"},
+      {:opentelemetry_ecto, "1.0.0-rc.1"},
+      {:teleplug, "1.0.0-rc.4", github: "primait/teleplug"},
+      {:telepoison, "1.0.0-rc.4"}
     ]
   end
 end
