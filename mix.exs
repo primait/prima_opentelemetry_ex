@@ -21,7 +21,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:telemetry, "~> 0.4"}
+      {:telemetry, "~> 0.4 or ~> 1.0"}
     ] ++
       opentelemetry_core_deps() ++
       opentelemetry_instrumentation_deps()
