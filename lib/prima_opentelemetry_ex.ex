@@ -48,7 +48,7 @@ defmodule PrimaOpentelemetryEx do
       :opentelemetry,
       :resource_detectors,
       detectors ++ [PrimaOpentelemetryEx.ResourceDetector],
-      permanent: true
+      persistent: true
     )
   end
 
@@ -69,7 +69,7 @@ defmodule PrimaOpentelemetryEx do
              exporter: {:opentelemetry_exporter, %{endpoints: [{protocol, host, port, []}]}}
            }}
         ],
-        permanent: true
+        persistent: true
       )
     end
   end

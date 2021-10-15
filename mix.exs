@@ -7,7 +7,13 @@ defmodule PrimaOpentelemetryEx.MixProject do
       version: "0.1.2",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      dialyzer: [
+        plt_add_apps: [:mix, :ex_unit],
+        plt_add_deps: :transitive,
+        ignore_warnings: ".dialyzer_ignore.exs",
+        list_unused_filters: true
+      ]
     ]
   end
 
@@ -24,7 +30,8 @@ defmodule PrimaOpentelemetryEx.MixProject do
       {:telemetry, "~> 0.4"}
     ] ++
       opentelemetry_core_deps() ++
-      opentelemetry_instrumentation_deps()
+      opentelemetry_instrumentation_deps() ++
+      dev_deps()
   end
 
   defp opentelemetry_core_deps do
@@ -41,6 +48,12 @@ defmodule PrimaOpentelemetryEx.MixProject do
       {:opentelemetry_ecto, "1.0.0-rc.1"},
       {:teleplug, "1.0.0-rc.4", github: "primait/teleplug"},
       {:telepoison, "1.0.0-rc.4"}
+    ]
+  end
+
+  defp dev_deps do
+    [
+      {:dialyxir, "1.1.0", only: [:dev, :test], runtime: false}
     ]
   end
 end
