@@ -25,7 +25,7 @@
   "plug_crypto": {:hex, :plug_crypto, "1.2.2", "05654514ac717ff3a1843204b424477d9e60c143406aa94daf2274fdd280794d", [:mix], [], "hexpm", "87631c7ad914a5a445f0a3809f99b079113ae4ed4b867348dd9eec288cecb6db"},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.6", "cf344f5692c82d2cd7554f5ec8fd961548d4fd09e7d22f5b62482e5aeaebd4b0", [:make, :mix, :rebar3], [], "hexpm", "bdb0d2471f453c88ff3908e7686f86f9be327d065cc1ec16fa4540197ea04680"},
   "telemetry": {:hex, :telemetry, "0.4.3", "a06428a514bdbc63293cd9a6263aad00ddeb66f608163bdec7c8995784080818", [:rebar3], [], "hexpm", "eb72b8365ffda5bed68a620d1da88525e326cb82a75ee61354fc24b844768041"},
-  "teleplug": {:git, "https://github.com/primait/teleplug.git", "d4be790bb09c3e128842318f59cf0fe17e14ab0a", []},
+  "teleplug": {:git, "https://github.com/primait/teleplug.git", "ca35d7b1beba4158f7837532c625495c27ba44b5", []},
   "telepoison": {:hex, :telepoison, "1.0.0-rc.4", "86b5436a56578ce4b050b359b1cd6132a3f64bc3dbc0d80b6bca7e43c385515b", [:mix], [{:httpoison, "~> 1.6", [hex: :httpoison, repo: "hexpm", optional: false]}, {:opentelemetry_api, "~> 1.0.0-rc.2", [hex: :opentelemetry_api, repo: "hexpm", optional: false]}], "hexpm", "2ff6b1374c8d730bd377febd78a6762b8e95e21da3fff042b2f6f8ef2a58991f"},
   "unicode_util_compat": {:hex, :unicode_util_compat, "0.7.0", "bc84380c9ab48177092f43ac89e4dfa2c6d62b40b8bd132b1059ecc7232f9a78", [:rebar3], [], "hexpm", "25eee6d67df61960cf6a794239566599b09e17e668d3700247bc498638152521"},
 }
