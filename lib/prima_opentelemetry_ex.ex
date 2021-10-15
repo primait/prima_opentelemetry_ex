@@ -58,7 +58,7 @@ defmodule PrimaOpentelemetryEx do
       endpoint = Application.get_env(:prima_opentelemetry_ex, :endpoint, [])
       protocol = Keyword.get(endpoint, :protocol, :http)
       host = Keyword.get(endpoint, :host, "jaeger")
-      port = Keyword.get(endpoint, :port, 55681)
+      port = Keyword.get(endpoint, :port, 55_681)
 
       Application.put_env(
         :opentelemetry,

@@ -53,6 +53,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
 
   defp dev_deps do
     [
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:dialyxir, "1.1.0", only: [:dev, :test], runtime: false}
     ]
   end

@@ -1,4 +1,8 @@
 defmodule PrimaOpentelemetryEx.ResourceDetector do
+  @moduledoc """
+  Documentation for `PrimaOpentelemetryEx.ResourceDetector`.
+  """
+
   @behaviour :otel_resource_detector
 
   @impl :otel_resource_detector
