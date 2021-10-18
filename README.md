@@ -10,7 +10,7 @@ You can stop getting headaches figuring out which opentelemetry_beam library you
 Just add
 
 ```elixir
-    {:prima_opentelemetry_ex, "~> 0.1", github: "primait/prima_opentelemetry_ex"}
+    {:prima_opentelemetry_ex, "~> 1.0.0-rc.1"}
 ```
 
 to your dependencies and you are good to go.
