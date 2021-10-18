@@ -1,10 +1,13 @@
 defmodule PrimaOpentelemetryEx.MixProject do
   use Mix.Project
 
+  @source_url "https://github.com/primait/prima_opentelemetry_ex"
+  @version "0.1.3"
+  
   def project do
     [
       app: :prima_opentelemetry_ex,
-      version: "0.1.2",
+      version: @version,
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -13,7 +16,8 @@ defmodule PrimaOpentelemetryEx.MixProject do
         plt_add_deps: :transitive,
         ignore_warnings: ".dialyzer_ignore.exs",
         list_unused_filters: true
-      ]
+      ],
+      docs: docs()
     ]
   end
 
@@ -56,6 +60,19 @@ defmodule PrimaOpentelemetryEx.MixProject do
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:dialyxir, "1.1.0", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.25.3", only: :dev, runtime: false}
+    ]
+  end
+
+  defp docs do
+    [
+      extras: [
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
+      main: "readme",
+      source_url: @source_url,
+      source_ref: "v#{@version}",
+      formatters: ["html"]
     ]
   end
 end
