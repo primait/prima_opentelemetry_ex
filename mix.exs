@@ -3,7 +3,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
 
   @source_url "https://github.com/primait/prima_opentelemetry_ex"
   @version "0.1.3"
-  
+
   def project do
     [
       app: :prima_opentelemetry_ex,
@@ -17,7 +17,8 @@ defmodule PrimaOpentelemetryEx.MixProject do
         ignore_warnings: ".dialyzer_ignore.exs",
         list_unused_filters: true
       ],
-      docs: docs()
+      docs: docs(),
+      package: package()
     ]
   end
 
@@ -73,6 +74,17 @@ defmodule PrimaOpentelemetryEx.MixProject do
       source_url: @source_url,
       source_ref: "v#{@version}",
       formatters: ["html"]
+    ]
+  end
+
+  def package do
+    [
+      description:
+        "PrimaOpentelemetryEx is a utility library for opentelemetry instrumentation in Prima elixir projects.",
+      name: "prima_opentelemetry_ex",
+      maintainers: ["Matteo Busi"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => @source_url}
     ]
   end
 end
