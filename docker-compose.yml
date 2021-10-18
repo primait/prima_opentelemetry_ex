@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - .:/code
+      - "~/.ssh:/home/app/.ssh"
+      - "~/.aws:/home/app/.aws"
+      - "~/.gitconfig:/home/app/.gitconfig"
+    working_dir: /code

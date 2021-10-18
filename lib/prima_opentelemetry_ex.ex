@@ -1,6 +1,11 @@
 defmodule PrimaOpentelemetryEx do
   @moduledoc """
-  Documentation for `PrimaOpentelemetryEx`.
+  Swiss knife module for opentelemetry instrumentation.
+  It can be used to setup instrument:
+  - Teleplug
+  - Telepoison
+  - OpentelemetryAbsinthe
+  - OpentelemetryEcto
   """
 
   @doc """
@@ -48,7 +53,7 @@ defmodule PrimaOpentelemetryEx do
       :opentelemetry,
       :resource_detectors,
       detectors ++ [PrimaOpentelemetryEx.ResourceDetector],
-      permanent: true
+      persistent: true
     )
   end
 
@@ -58,7 +63,7 @@ defmodule PrimaOpentelemetryEx do
       endpoint = Application.get_env(:prima_opentelemetry_ex, :endpoint, [])
       protocol = Keyword.get(endpoint, :protocol, :http)
       host = Keyword.get(endpoint, :host, "jaeger")
-      port = Keyword.get(endpoint, :port, 55681)
+      port = Keyword.get(endpoint, :port, 55_681)
 
       Application.put_env(
         :opentelemetry,
@@ -69,7 +74,7 @@ defmodule PrimaOpentelemetryEx do
              exporter: {:opentelemetry_exporter, %{endpoints: [{protocol, host, port, []}]}}
            }}
         ],
-        permanent: true
+        persistent: true
       )
     end
   end

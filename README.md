@@ -1,4 +1,9 @@
 # PrimaOpentelemetryEx
+[![Module Version](https://img.shields.io/hexpm/v/prima_opentelemetry_ex.svg)](https://hex.pm/packages/prima_opentelemetry_ex)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/telepoison/)
+[![Total Download](https://img.shields.io/hexpm/dt/telepoison.svg)](https://hex.pm/packages/telepoison)
+[![License](https://img.shields.io/hexpm/l/telepoison.svg)](https://github.com/primait/telepoison/blob/master/LICENSE.md)
+[![Last Updated](https://img.shields.io/github/last-commit/primait/telepoison.svg)](https://github.com/primait/telepoison/commits/master)
 
 This is your one-stop source of all things opentelemetry in elixir.
 You can stop getting headaches figuring out which opentelemetry_beam library you need or resolving dependencies conflicts.
@@ -131,4 +136,11 @@ config :prima_opentelemetry_ex, :graphql,
     trace_request_variables: false
 ```
 All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see opentelemetry_absinthe [readme](https://github.com/primait/opentelemetry_absinthe#readme)
+
+## Copyright and License
+
+Copyright (c) 2020 Prima.it
+
+This work is free. You can redistribute it and/or modify it under the
+terms of the MIT License. See the [LICENSE.md](./LICENSE.md) file for more details.
 
