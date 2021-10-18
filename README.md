@@ -1,9 +1,9 @@
 # PrimaOpentelemetryEx
 [![Module Version](https://img.shields.io/hexpm/v/prima_opentelemetry_ex.svg)](https://hex.pm/packages/prima_opentelemetry_ex)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/telepoison/)
-[![Total Download](https://img.shields.io/hexpm/dt/telepoison.svg)](https://hex.pm/packages/telepoison)
-[![License](https://img.shields.io/hexpm/l/telepoison.svg)](https://github.com/primait/telepoison/blob/master/LICENSE.md)
-[![Last Updated](https://img.shields.io/github/last-commit/primait/telepoison.svg)](https://github.com/primait/telepoison/commits/master)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/prima_opentelemetry_ex/)
+[![Total Download](https://img.shields.io/hexpm/dt/prima_opentelemetry_ex.svg)](https://hex.pm/packages/prima_opentelemetry_ex)
+[![License](https://img.shields.io/hexpm/l/prima_opentelemetry_ex.svg)](https://github.com/primait/prima_opentelemetry_ex/blob/master/LICENSE.md)
+[![Last Updated](https://img.shields.io/github/last-commit/primait/prima_opentelemetry_ex.svg)](https://github.com/primait/prima_opentelemetry_ex/commits/master)
 
 This is your one-stop source of all things opentelemetry in elixir.
 You can stop getting headaches figuring out which opentelemetry_beam library you need or resolving dependencies conflicts.
