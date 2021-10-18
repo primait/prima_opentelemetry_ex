@@ -18,7 +18,8 @@ defmodule PrimaOpentelemetryEx.MixProject do
         list_unused_filters: true
       ],
       docs: docs(),
-      package: package()
+      package: package(),
+      aliases: aliases()
     ]
   end
 
@@ -85,6 +86,15 @@ defmodule PrimaOpentelemetryEx.MixProject do
       maintainers: ["Matteo Busi"],
       licenses: ["MIT"],
       links: %{"GitHub" => @source_url}
+    ]
+  end
+
+  defp aliases do
+    [
+      c: "compile",
+      "format.all": [
+        "format mix.exs \"lib/**/*.{ex,exs}\" \"test/**/*.{ex,exs}\" \"config/**/*.{ex,exs}\""
+      ]
     ]
   end
 end
