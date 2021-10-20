@@ -6,12 +6,12 @@ defmodule PrimaOpentelemetryEx.ResourceDetector do
   """
 
   @behaviour :otel_resource_detector
-  
+
   # in spite of the erlang lib specs:
   # https://github.com/open-telemetry/opentelemetry-erlang/blob/fab724a81179ffd8fa1b1b283fb854e70f963b29/apps/opentelemetry/src/otel_resource.erl#L26)
   # when using charlists instead of binaries for values the tags get exported as blank strings
   @dialyzer {:nowarn_function, get_resource: 1}
-  
+
   @impl :otel_resource_detector
   def get_resource(_config) do
     {:otel_resource,
