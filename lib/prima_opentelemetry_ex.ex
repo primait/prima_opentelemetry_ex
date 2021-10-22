@@ -14,7 +14,7 @@ defmodule PrimaOpentelemetryEx do
   """
   def setup do
     if Application.get_env(:prima_opentelemetry_ex, :enabled, true) do
-      register_resource_detector()
+      set_resource()
       set_processor()
       instrument()
       Application.ensure_all_started(:opentelemetry_exporter)
@@ -46,14 +46,14 @@ defmodule PrimaOpentelemetryEx do
     |> OpentelemetryEcto.setup()
   end
 
-  def register_resource_detector do
-    detectors = Application.get_env(:opentelemetry, :resource_detectors, [])
-
+  def set_resource do
     Application.put_env(
       :opentelemetry,
-      :resource_detectors,
-      detectors ++ [PrimaOpentelemetryEx.ResourceDetector],
-      persistent: true
+      :resource,
+      %{
+        "service.name" => System.get_env("APP_NAME", "prima-opentelemetry-service"),
+        "service.version" => System.get_env("VERSION", "0.0.0-dev")
+      }
     )
   end
 
