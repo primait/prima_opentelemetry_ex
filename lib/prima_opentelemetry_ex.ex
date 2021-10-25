@@ -59,7 +59,7 @@ defmodule PrimaOpentelemetryEx do
 
   defp set_processor do
     # set opentelemetry processors configuration only if NOT already set by something else
-    with [] <- Application.get_env(:opentelemetry, :processors) do
+    with [] <- Application.get_env(:opentelemetry, :processors, []) do
       endpoint = Application.get_env(:prima_opentelemetry_ex, :endpoint, [])
       protocol = Keyword.get(endpoint, :protocol, :http)
       host = Keyword.get(endpoint, :host, "jaeger")
