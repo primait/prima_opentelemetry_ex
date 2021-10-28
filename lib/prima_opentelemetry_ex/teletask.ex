@@ -9,6 +9,7 @@ defmodule PrimaOpentelemetryEx.TeleTask do
   @spec start((() -> any())) :: {:ok, pid()}
   def start(fun) do
     ctx = Tracer.current_span_ctx()
+
     Task.start(fn ->
       Tracer.set_current_span(ctx)
       fun.()
@@ -18,6 +19,7 @@ defmodule PrimaOpentelemetryEx.TeleTask do
   @spec async((() -> any)) :: Task.t()
   def async(fun) do
     ctx = Tracer.current_span_ctx()
+
     Task.async(fn ->
       Tracer.set_current_span(ctx)
       fun.()
