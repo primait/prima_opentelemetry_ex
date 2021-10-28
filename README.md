@@ -52,6 +52,8 @@ end
 
 GraphQL and database spans are emitted automatically.
 
+To keep traces across elixir tasks you need to use `PrimaOpentelemetryEx.TeleTask` module that wraps `start/1`, `async/1` and `await/1`.
+
 To see emitted traces on your local dev machine, you can use jaeger all-in-one [image](https://hub.docker.com/r/jaegertracing/opentelemetry-all-in-one/).
 
 
