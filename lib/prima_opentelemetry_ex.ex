@@ -47,12 +47,18 @@ defmodule PrimaOpentelemetryEx do
   end
 
   def set_resource do
+    service_name = System.get_env("APP_NAME", "prima-opentelemetry-service")
+    service_version = System.get_env("VERSION", "0.0.0-dev")
     Application.put_env(
       :opentelemetry,
       :resource,
       %{
-        "service.name" => System.get_env("APP_NAME", "prima-opentelemetry-service"),
-        "service.version" => System.get_env("VERSION", "0.0.0-dev")
+        # standard opentelementry naming
+        "service.name" => service_name,
+        "service.version" => service_version,
+        # datadog naming
+        "service" => service_name,
+        "version" => service_version
       }
     )
   end
