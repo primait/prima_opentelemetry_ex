@@ -52,7 +52,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
     [
       {:opentelemetry_absinthe, "1.0.0-rc.6"},
       {:opentelemetry_ecto, "1.0.0-rc.3"},
-      {:teleplug, "1.0.0-rc.8"},
+      {:teleplug, "1.0.0-rc.9"},
       {:telepoison, "1.0.0-rc.6"}
     ]
   end
