@@ -51,6 +51,7 @@ defmodule PrimaOpentelemetryEx do
       :opentelemetry,
       :resource,
       %{
+        "deployment.environment" => System.get_env("APP_ENV", "dev"),
         "service.name" => System.get_env("APP_NAME", "prima-opentelemetry-service"),
         "service.version" => System.get_env("VERSION", "0.0.0-dev")
       }
