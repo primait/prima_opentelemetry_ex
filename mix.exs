@@ -2,7 +2,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/primait/prima_opentelemetry_ex"
-  @version "1.0.0-rc.3"
+  @version "1.0.0-rc.4"
 
   def project do
     [
@@ -42,18 +42,18 @@ defmodule PrimaOpentelemetryEx.MixProject do
 
   defp opentelemetry_core_deps do
     [
-      {:opentelemetry, "1.0.0-rc.3"},
-      {:opentelemetry_api, "1.0.0-rc.3.2"},
-      {:opentelemetry_exporter, "1.0.0-rc.3"}
+      {:opentelemetry, "~> 1.0.0"},
+      {:opentelemetry_api, "~> 1.0.0"},
+      {:opentelemetry_exporter, "~> 1.0.0"}
     ]
   end
 
   defp opentelemetry_instrumentation_deps do
     [
-      {:opentelemetry_absinthe, "1.0.0-rc.7"},
-      {:opentelemetry_ecto, "1.0.0-rc.3"},
-      {:teleplug, "1.0.0-rc.9"},
-      {:telepoison, "1.0.0-rc.6"}
+      {:opentelemetry_absinthe, "~> 1.0.0"},
+      {:opentelemetry_ecto, "1.0.0-rc.5"},
+      {:teleplug, "~> 1.0.0"},
+      {:telepoison, "~> 1.0.0"}
     ]
   end
 
