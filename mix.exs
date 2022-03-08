@@ -42,18 +42,18 @@ defmodule PrimaOpentelemetryEx.MixProject do
 
   defp opentelemetry_core_deps do
     [
-      {:opentelemetry, "~> 1.0.0"},
-      {:opentelemetry_api, "~> 1.0.0"},
-      {:opentelemetry_exporter, "~> 1.0.0"}
+      {:opentelemetry, "~> 1.0"},
+      {:opentelemetry_api, "~> 1.0"},
+      {:opentelemetry_exporter, "~> 1.0"}
     ]
   end
 
   defp opentelemetry_instrumentation_deps do
     [
-      {:opentelemetry_absinthe, "~> 1.0.0"},
+      {:opentelemetry_absinthe, "~> 1.0"},
       {:opentelemetry_ecto, "1.0.0-rc.5"},
-      {:teleplug, "~> 1.0.0"},
-      {:telepoison, "~> 1.0.0"}
+      {:teleplug, "~> 1.0"},
+      {:telepoison, "~> 1.0"}
     ]
   end
 
