@@ -1,4 +1,5 @@
 # PrimaOpentelemetryEx
+
 [![Module Version](https://img.shields.io/hexpm/v/prima_opentelemetry_ex.svg)](https://hex.pm/packages/prima_opentelemetry_ex)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/prima_opentelemetry_ex/)
 [![Total Download](https://img.shields.io/hexpm/dt/prima_opentelemetry_ex.svg)](https://hex.pm/packages/prima_opentelemetry_ex)
@@ -10,17 +11,17 @@ You can stop getting headaches figuring out which opentelemetry_beam library you
 Just add
 
 ```elixir
-    {:prima_opentelemetry_ex, "~> 1.0.0-rc.4"}
+    {:prima_opentelemetry_ex, "~> 1.0.0"}
 ```
 
 to your dependencies and you are good to go.
 
 What's covered:
+
 - HTTPoison - to trace the http calls you make to external system and to pass along the trace context
 - Plug - to link your phoenix/plug handled requests with their http clients traces
 - Absinthe - to trace your GraphQL resolutions in a single span
 - Ecto - to trace your database transactions in a single span
-
 
 ## Usage
 
@@ -29,6 +30,7 @@ To start collecting traces just put
 ``` elixir
 PrimaOpentelemetryEx.setup()
 ```
+
 in your application start function.
 
 To trace your outgoing http calls you need to use the `Telepoison` module as a drop-in replacement for `HTTPoison`.
@@ -56,7 +58,6 @@ To keep traces across elixir tasks you need to use `PrimaOpentelemetryEx.TeleTas
 
 To see emitted traces on your local dev machine, you can use jaeger all-in-one [image](https://hub.docker.com/r/jaegertracing/opentelemetry-all-in-one/).
 
-
 NOTE: This is a discontinued jaeger image but it exposes the otel collector (that is compatible with the exporter `prima_opentelemetry_ex` uses).
 
 To add it to your local docker compose simply add a service (which your web container should depend on):
@@ -71,6 +72,7 @@ To add it to your local docker compose simply add a service (which your web cont
 You can then use the jaeger [UI](http://localhost:16686/search) to search for your traces.
 
 Be advised that `prima_opentelemetry_ex` uses ENV vars to set service name and version inside the exported traces. Those values are important, for example, to make datadog correctly recognize services and their relative deployments (through version tracking); the two ENV var currently used are:
+
 - `APP_NAME` for service name
 - `VERSION` for service version
 
@@ -96,7 +98,6 @@ services:
     env_file:
       - biscuit.env
 ```
-
 
 ## Configuration
 
@@ -137,6 +138,7 @@ config :prima_opentelemetry_ex, :graphql,
     span_name: "graphql resolution",
     trace_request_variables: false
 ```
+
 All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see opentelemetry_absinthe [readme](https://github.com/primait/opentelemetry_absinthe#readme)
 
 ## Copyright and License
@@ -145,4 +147,3 @@ Copyright (c) 2020 Prima.it
 
 This work is free. You can redistribute it and/or modify it under the
 terms of the MIT License. See the [LICENSE.md](./LICENSE.md) file for more details.
-
