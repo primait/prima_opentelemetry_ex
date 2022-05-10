@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [Next]
 
 ## [1.0.0] - 2022-04-14
 
@@ -82,7 +82,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0...HEAD
+[Next]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0...HEAD
 [1.0.0]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0-rc.4...1.0.0
 [1.0.0-rc.4]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0-rc.3...1.0.0-rc.4
 [1.0.0-rc.3]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0-rc.2...1.0.0-rc.3
