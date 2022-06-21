@@ -61,7 +61,7 @@ To add it to your local Docker Compose setup, simply add a service (which your w
 
 ``` yaml
   jaeger:
-    image: jaegertracing/all-in-one:latest
+    image: jaegertracing/all-in-one:1.35
     ports:
       - 16686:16686
     environment:
