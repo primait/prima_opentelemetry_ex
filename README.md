@@ -56,20 +56,20 @@ GraphQL and database spans are emitted automatically.
 
 To keep traces across elixir tasks you need to use `PrimaOpentelemetryEx.TeleTask` module that wraps `start/1`, `async/1` and `await/1`.
 
-To see emitted traces on your local dev machine, you can use jaeger all-in-one [image](https://hub.docker.com/r/jaegertracing/opentelemetry-all-in-one/).
-
-NOTE: This is a discontinued jaeger image but it exposes the otel collector (that is compatible with the exporter `prima_opentelemetry_ex` uses).
-
-To add it to your local docker compose simply add a service (which your web container should depend on):
+To see emitted traces on your local dev machine, you can use the [jaeger all-in-one image](https://hub.docker.com/r/jaegertracing/all-in-one/).  
+To add it to your local Docker Compose setup, simply add a service (which your web container should depend on):
 
 ``` yaml
   jaeger:
-    image: jaegertracing/opentelemetry-all-in-one:latest
+    image: jaegertracing/all-in-one:latest
     ports:
       - 16686:16686
+    environment:
+      COLLECTOR_OTLP_ENABLED: true
+      COLLECTOR_OTLP_HTTP_HOST_PORT: 55681
 ```
 
-You can then use the jaeger [UI](http://localhost:16686/search) to search for your traces.
+You can then use the [jaeger UI](http://localhost:16686/search) to search for your traces.
 
 Be advised that `prima_opentelemetry_ex` uses ENV vars to set service name and version inside the exported traces. Those values are important, for example, to make datadog correctly recognize services and their relative deployments (through version tracking); the two ENV var currently used are:
 
