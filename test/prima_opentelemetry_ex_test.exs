@@ -8,16 +8,6 @@ defmodule PrimaOpentelemetryExTest do
       Application.put_env(:prima_opentelemetry_ex, :enabled, true)
     end
 
-    test "disable tracing for teleplug when configured" do
-      with_mock Teleplug, setup: fn -> "" end do
-        Application.put_env(:prima_opentelemetry_ex, :except, [:teleplug])
-
-        PrimaOpentelemetryEx.setup()
-
-        assert_not_called(Teleplug.setup())
-      end
-    end
-
     test "disable tracing for absinthe when configured" do
       with_mock OpentelemetryAbsinthe.Instrumentation, setup: fn _ -> "" end do
         Application.put_env(:prima_opentelemetry_ex, :except, [:absinthe])
