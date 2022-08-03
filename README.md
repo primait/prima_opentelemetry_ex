@@ -18,7 +18,7 @@ to your dependencies and you are good to go.
 
 What's covered:
 
-- HTTPoison - to trace the http calls you make to external system and to pass along the trace context
+- HTTPoison (via [Telepoison](https://github.com/primait/telepoison)) - to trace the http calls you make to external system and to pass along the trace context
 - Plug - to link your phoenix/plug handled requests with their http clients traces
 - Absinthe - to trace your GraphQL resolutions in a single span
 - Ecto - to trace your database transactions in a single span
@@ -107,6 +107,13 @@ If you want to disable tracing via configuration (if you need to turn it off for
 
 ``` elixir
 config :prima_opentelemetry_ex, :enabled, false
+```
+
+You can disable the instrumentation for one or more external libraries by setting the `except` key like in the following example:
+
+```elixir
+config :prima_opentelemetry_ex,
+  except: [:ecto, :telepoison, :absinthe]
 ```
 
 To configure the endpoint to send traces to, you can use the `:endpoint` configuration key to set protocol, host and port of the destination endpoint (agent or collector).
