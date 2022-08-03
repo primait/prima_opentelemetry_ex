@@ -36,18 +36,23 @@ defmodule PrimaOpentelemetryEx do
       Telepoison.setup()
     end
 
-    Teleplug.setup()
+    if is_enabled?(:teleplug) do
+      Teleplug.setup()
+    end
 
-    :prima_opentelemetry_ex
-    |> Application.get_env(:graphql, [])
-    |> OpentelemetryAbsinthe.Instrumentation.setup()
+    if is_enabled?(:absinthe) do
+      Application.get_env(:prima_opentelemetry_ex, :graphql, [])
+      |> OpentelemetryAbsinthe.Instrumentation.setup()
+    end
 
-    :telemetry.attach(
-      "repo-init-handler",
-      [:ecto, :repo, :init],
-      &__MODULE__.instrument_repo/4,
-      %{}
-    )
+    if is_enabled?(:ecto) do
+      :telemetry.attach(
+        "repo-init-handler",
+        [:ecto, :repo, :init],
+        &__MODULE__.instrument_repo/4,
+        %{}
+      )
+    end
   end
 
   def instrument_repo(_event, _measurements, metadata, _config) do
