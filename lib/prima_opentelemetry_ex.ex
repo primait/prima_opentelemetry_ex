@@ -28,7 +28,7 @@ defmodule PrimaOpentelemetryEx do
   defp is_enabled?(feature) do
     Application.get_env(:prima_opentelemetry_ex, :except, [])
     |> Enum.member?(feature)
-    |> Kernel.not
+    |> Kernel.not()
   end
 
   defp instrument do

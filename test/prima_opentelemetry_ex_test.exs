@@ -3,22 +3,17 @@ defmodule PrimaOpentelemetryExTest do
 
   import Mock
 
-  describe "" do
-    test "Cristiano e' bravo" do
-      with_mock Telepoison, setup: fn -> "" end do
-        Application.put_env(
-          :prima_opentelemetry_ex,
-          :enabled,
-          true
-        )
+  describe "setup" do
+    setup do
+      Application.put_env(:prima_opentelemetry_ex, :enabled, true)
+    end
 
-        Application.put_env(
-          :prima_opentelemetry_ex,
-          :except,
-          [:telepoison]
-        )
+    test "disable metrics for telepoison when configured" do
+      with_mock Telepoison, setup: fn -> "" end do
+        Application.put_env(:prima_opentelemetry_ex, :except, [:telepoison])
 
         PrimaOpentelemetryEx.setup()
+
         assert_not_called(Telepoison.setup())
       end
     end
