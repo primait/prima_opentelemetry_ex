@@ -25,8 +25,17 @@ defmodule PrimaOpentelemetryEx do
     :ok
   end
 
+  defp is_enabled?(feature) do
+    Application.get_env(:prima_opentelemetry_ex, :except, [])
+    |> Enum.member?(feature)
+    |> Kernel.not
+  end
+
   defp instrument do
-    Telepoison.setup()
+    if is_enabled?(:telepoison) do
+      Telepoison.setup()
+    end
+
     Teleplug.setup()
 
     :prima_opentelemetry_ex
