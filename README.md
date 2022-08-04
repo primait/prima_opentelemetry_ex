@@ -112,8 +112,7 @@ config :prima_opentelemetry_ex, :enabled, false
 You can disable the instrumentation for one or more external libraries by setting the `except` key like in the following example:
 
 ```elixir
-config :prima_opentelemetry_ex,
-  except: [:ecto, :telepoison, :absinthe]
+config :prima_opentelemetry_ex, except: [:ecto, :telepoison, :teleplug, :absinthe]
 ```
 
 To configure the endpoint to send traces to, you can use the `:endpoint` configuration key to set protocol, host and port of the destination endpoint (agent or collector).
