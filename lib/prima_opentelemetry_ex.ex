@@ -26,9 +26,8 @@ defmodule PrimaOpentelemetryEx do
   end
 
   defp enabled?(feature) do
-    Application.get_env(:prima_opentelemetry_ex, :exclude, [])
-    |> Enum.member?(feature)
-    |> Kernel.not()
+    excluded_libraries = Application.get_env(:prima_opentelemetry_ex, :exclude, [])
+    !Enum.member?(excluded_libraries, feature)
   end
 
   defp instrument do
