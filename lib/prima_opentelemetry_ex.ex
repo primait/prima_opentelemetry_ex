@@ -25,27 +25,27 @@ defmodule PrimaOpentelemetryEx do
     :ok
   end
 
-  defp is_enabled?(feature) do
+  defp enabled?(feature) do
     Application.get_env(:prima_opentelemetry_ex, :exclude, [])
     |> Enum.member?(feature)
     |> Kernel.not()
   end
 
   defp instrument do
-    if is_enabled?(:telepoison) do
+    if enabled?(:telepoison) do
       Telepoison.setup()
     end
 
-    if is_enabled?(:teleplug) do
+    if enabled?(:teleplug) do
       Teleplug.setup()
     end
 
-    if is_enabled?(:absinthe) do
+    if enabled?(:absinthe) do
       Application.get_env(:prima_opentelemetry_ex, :graphql, [])
       |> OpentelemetryAbsinthe.Instrumentation.setup()
     end
 
-    if is_enabled?(:ecto) do
+    if enabled?(:ecto) do
       :telemetry.attach(
         "repo-init-handler",
         [:ecto, :repo, :init],
