@@ -32,13 +32,8 @@ defmodule PrimaOpentelemetryEx do
   end
 
   defp instrument do
-    if enabled?(:telepoison) do
-      Telepoison.setup()
-    end
-
-    if enabled?(:teleplug) do
-      Teleplug.setup()
-    end
+    Telepoison.setup()
+    Teleplug.setup()
 
     if enabled?(:absinthe) do
       Application.get_env(:prima_opentelemetry_ex, :graphql, [])
