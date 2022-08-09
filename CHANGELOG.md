@@ -7,12 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Next]
 
+## [1.1.0] - 2022-08-09
+
 ### Added
 
 - Added the ability to disable instrumentation for Ecto and/or Absinthe by setting the `exclude` configuration key:  
   ```elixir
   config :prima_opentelemetry_ex, exclude: [:ecto, :absinthe]
   ```
+
+### Changed
+
+- Logger metadata will be propagated in processes spawned by the `TeleTask` module
 
 ## [1.0.1] - 2022-05-27
 
@@ -95,7 +101,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Next]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.1...HEAD
+[Next]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.1...1.1.0
 [1.0.1]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0-rc.4...1.0.0
 [1.0.0-rc.4]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0-rc.3...1.0.0-rc.4
