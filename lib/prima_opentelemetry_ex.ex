@@ -25,20 +25,28 @@ defmodule PrimaOpentelemetryEx do
     :ok
   end
 
+  defp enabled?(feature) do
+    excluded_libraries = Application.get_env(:prima_opentelemetry_ex, :exclude, [])
+    !Enum.member?(excluded_libraries, feature)
+  end
+
   defp instrument do
     Telepoison.setup()
     Teleplug.setup()
 
-    :prima_opentelemetry_ex
-    |> Application.get_env(:graphql, [])
-    |> OpentelemetryAbsinthe.Instrumentation.setup()
+    if enabled?(:absinthe) do
+      Application.get_env(:prima_opentelemetry_ex, :graphql, [])
+      |> OpentelemetryAbsinthe.Instrumentation.setup()
+    end
 
-    :telemetry.attach(
-      "repo-init-handler",
-      [:ecto, :repo, :init],
-      &__MODULE__.instrument_repo/4,
-      %{}
-    )
+    if enabled?(:ecto) do
+      :telemetry.attach(
+        "repo-init-handler",
+        [:ecto, :repo, :init],
+        &__MODULE__.instrument_repo/4,
+        %{}
+      )
+    end
   end
 
   def instrument_repo(_event, _measurements, metadata, _config) do

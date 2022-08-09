@@ -3,8 +3,15 @@ services:
   web:
     build: .
     volumes:
-      - .:/code
+      - .:/app
       - "~/.ssh:/home/app/.ssh"
       - "~/.aws:/home/app/.aws"
       - "~/.gitconfig:/home/app/.gitconfig"
-    working_dir: /code
+      - app:/home/app
+    working_dir: /app
+    environment:
+      MIX_BUILD_ROOT: /home/app/_build
+      MIX_DEPS_PATH: /home/app/deps
+volumes:
+  app:
+  

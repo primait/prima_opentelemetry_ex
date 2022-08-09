@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Next]
 
+### Added
+
+- Added the ability to disable instrumentation for Ecto and/or Absinthe by setting the `exclude` configuration key:  
+  ```elixir
+  config :prima_opentelemetry_ex, exclude: [:ecto, :absinthe]
+  ```
+
 ## [1.0.1] - 2022-05-27
 
 ### Fixed
