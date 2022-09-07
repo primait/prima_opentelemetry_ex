@@ -25,8 +25,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
-      included_applications: [:opentelemetry, :opentelemetry_ecto, :opentelemetry_exporter]
+      extra_applications: [:logger]
     ]
   end
 
@@ -42,9 +41,11 @@ defmodule PrimaOpentelemetryEx.MixProject do
 
   defp opentelemetry_core_deps do
     [
-      {:opentelemetry, "~> 1.0"},
+      # `runtime: false` here is needed since we start opentelemetry and opentelemetry_exporter applications
+      # manually after setting their configuration programmatically
+      {:opentelemetry, "~> 1.0", runtime: false},
       {:opentelemetry_api, "~> 1.0"},
-      {:opentelemetry_exporter, "~> 1.0"}
+      {:opentelemetry_exporter, "~> 1.0", runtime: false}
     ]
   end
 

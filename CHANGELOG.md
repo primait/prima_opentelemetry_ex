@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Next]
 
+### Fixed
+
+- Fix `:opentelemetry is listed both as a regular application and as an included application` error occurring when 
+ packaging with Mix Release an application that depends on this library
+
 ## [1.1.0] - 2022-08-09
 
 ### Added
