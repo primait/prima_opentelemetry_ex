@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Next]
 
+## [1.1.1] - 2022-09-07
+
 ### Fixed
 
 - Fix `:opentelemetry is listed both as a regular application and as an included application` error occurring when 
@@ -106,7 +108,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Next]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.0...HEAD
+[Next]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.1...1.1.0
 [1.0.1]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0-rc.4...1.0.0
