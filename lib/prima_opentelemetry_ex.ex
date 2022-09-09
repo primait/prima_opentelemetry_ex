@@ -18,8 +18,8 @@ defmodule PrimaOpentelemetryEx do
       set_processor()
       instrument()
 
-      Application.ensure_all_started(:opentelemetry_exporter)
-      Application.ensure_all_started(:opentelemetry)
+      {:ok, _} = Application.ensure_all_started(:opentelemetry_exporter)
+      {:ok, _} = Application.ensure_all_started(:opentelemetry)
     end
 
     :ok
