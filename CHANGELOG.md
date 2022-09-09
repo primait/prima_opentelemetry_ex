@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Next]
 
+### Changed
+
+- `PrimaOpentelemetryEx.setup()` will raise an error if `opentelemetry` or `opentelemetry_exporter` applications fail to start for some reason
+
+### Fixed
+
+- Fix OTLP exporter not starting in Distillery/Mix releases, due to `opentelemetry` and `opentelemetry_exporter` not being included in the release
+
 ## [1.1.1] - 2022-09-07
 
 ### Fixed
