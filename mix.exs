@@ -25,7 +25,8 @@ defmodule PrimaOpentelemetryEx.MixProject do
 
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      included_applications: [:opentelemetry, :opentelemetry_exporter]
     ]
   end
 
