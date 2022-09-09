@@ -26,6 +26,8 @@ defmodule PrimaOpentelemetryEx.MixProject do
   def application do
     [
       extra_applications: [:logger],
+      # We need to add these as included_applications because otherwise they won't be included
+      # in Distillery/Mix releases, since we declared them as `runtime: false`
       included_applications: [:opentelemetry, :opentelemetry_exporter]
     ]
   end
