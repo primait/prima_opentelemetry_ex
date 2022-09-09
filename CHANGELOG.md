@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Next]
 
+## [1.1.2] - 2022-09-09
+
 ### Changed
 
 - `PrimaOpentelemetryEx.setup()` will raise an error if `opentelemetry` or `opentelemetry_exporter` applications fail to start for some reason
@@ -116,7 +118,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Next]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.1...HEAD
+[Next]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.2...HEAD
+[1.1.2]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.1...1.1.0
 [1.0.1]: https://github.com/primait/prima_opentelemetry_ex/compare/1.0.0...1.0.1
