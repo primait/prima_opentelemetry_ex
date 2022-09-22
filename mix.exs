@@ -46,17 +46,17 @@ defmodule PrimaOpentelemetryEx.MixProject do
     [
       # `runtime: false` here is needed since we start opentelemetry and opentelemetry_exporter applications
       # manually after setting their configuration programmatically
-      {:opentelemetry, "~> 1.0", runtime: false},
-      {:opentelemetry_api, "~> 1.0"},
-      {:opentelemetry_exporter, "~> 1.0", runtime: false}
+      {:opentelemetry, "~> 1.1", runtime: false},
+      {:opentelemetry_api, "~> 1.1"},
+      {:opentelemetry_exporter, "~> 1.1", runtime: false}
     ]
   end
 
   defp opentelemetry_instrumentation_deps do
     [
-      {:opentelemetry_absinthe, "~> 1.0"},
+      {:opentelemetry_absinthe, "~> 1.1"},
       {:opentelemetry_ecto, "~> 1.0"},
-      {:teleplug, "~> 1.0"},
+      {:teleplug, "~> 1.1"},
       {:telepoison, "~> 1.0"}
     ]
   end
