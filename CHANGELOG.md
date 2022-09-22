@@ -11,7 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.3] - 2022-09-22
 
-Dependency bump
+### Changed
+
+- Bump min version of the following dependencies to 1.1
+  - `:opentelemetry`
+  - `:opentelemetry_api`
+  - `:opentelemetry_exporter`
+  - `:opentelemetry_absinthe`
+  - `:teleplug`
 
 ---
 
