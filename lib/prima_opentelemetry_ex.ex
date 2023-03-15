@@ -48,18 +48,18 @@ defmodule PrimaOpentelemetryEx do
   end
 
   if Code.ensure_loaded?(Telepoison) do
-    def maybe_setup_telepoison(), do: Telepoison.setup()
+    def maybe_setup_telepoison, do: Telepoison.setup()
   else
-    def maybe_setup_telepoison(), do: nil
+    def maybe_setup_telepoison, do: nil
   end
 
   if Code.ensure_loaded?(Teleplug) do
-    def maybe_setup_teleplug(), do: Teleplug.setup()
+    def maybe_setup_teleplug, do: Teleplug.setup()
   else
-    def maybe_setup_teleplug(), do: nil
+    def maybe_setup_teleplug, do: nil
   end
 
-  def maybe_setup_otel_absinthe() do
+  def maybe_setup_otel_absinthe do
     enabled = enabled?(:absinthe)
     absinthe_loaded = Code.ensure_loaded?(Absinthe)
 
