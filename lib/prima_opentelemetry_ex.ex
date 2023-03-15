@@ -1,4 +1,6 @@
 defmodule PrimaOpentelemetryEx do
+  require Logger
+
   @moduledoc """
   Swiss knife module for opentelemetry instrumentation.
   It can be used to setup instrument:
@@ -31,13 +33,9 @@ defmodule PrimaOpentelemetryEx do
   end
 
   defp instrument do
-    Telepoison.setup()
-    Teleplug.setup()
-
-    if enabled?(:absinthe) do
-      Application.get_env(:prima_opentelemetry_ex, :graphql, [])
-      |> OpentelemetryAbsinthe.Instrumentation.setup()
-    end
+    maybe_setup_telepoison()
+    maybe_setup_teleplug()
+    maybe_setup_otel_absinthe()
 
     if enabled?(:ecto) do
       :telemetry.attach(
@@ -48,6 +46,50 @@ defmodule PrimaOpentelemetryEx do
       )
     end
   end
+
+  if Code.ensure_loaded?(Telepoison) do
+    def maybe_setup_telepoison(), do: Telepoison.setup()
+  else
+    def maybe_setup_telepoison(), do: nil
+  end
+
+  if Code.ensure_loaded?(Teleplug) do
+    def maybe_setup_teleplug(), do: Teleplug.setup()
+  else
+    def maybe_setup_teleplug(), do: nil
+  end
+
+  def maybe_setup_otel_absinthe() do
+    enabled = enabled?(:absinthe)
+    absinthe_loaded = Code.ensure_loaded?(Absinthe)
+
+    maybe_setup_otel_absinthe(enabled, absinthe_loaded)
+  end
+
+  @spec maybe_setup_otel_absinthe(
+          enabled :: boolean(),
+          absinthe_loaded :: boolean()
+        ) :: nil
+  if Code.ensure_loaded?(OpentelemetryAbsinthe) do
+    def maybe_setup_otel_absinthe(true, _) do
+      :prima_opentelemetry_ex
+      |> Application.get_env(:graphql, [])
+      |> OpentelemetryAbsinthe.Instrumentation.setup()
+
+      nil
+    end
+  else
+    def maybe_setup_otel_absinthe(true, true) do
+      Logger.warn("""
+      Absinthe has been loaded without installing the optional opentelemetry_absinthe dependency.
+      PrimaOpentelemetryEx will not be able to instrument absinthe unless you add it.
+
+      Note: you can get rid of this warning by excluding absinthe from instrumentation with `config :prima_opentelemetry_ex, exclude: [:absinthe]`
+      """)
+    end
+  end
+
+  def maybe_setup_otel_absinthe(_, _), do: nil
 
   def instrument_repo(_event, _measurements, metadata, _config) do
     metadata
