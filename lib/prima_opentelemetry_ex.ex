@@ -3,11 +3,12 @@ defmodule PrimaOpentelemetryEx do
 
   @moduledoc """
   Swiss knife module for opentelemetry instrumentation.
-  It can be used to setup instrument:
+  It can be used to setup instrumentation with:
   - Teleplug
   - Telepoison
   - OpentelemetryAbsinthe
   - OpentelemetryEcto
+  (the libraries need to be installed separately)
   """
 
   @doc """
