@@ -19,6 +19,7 @@ What's covered:
 
 - HTTPoison (via [Telepoison](https://github.com/primait/telepoison)) - to trace the http calls you make to external system and to pass along the trace context
 - Plug - to link your phoenix/plug handled requests with their http clients traces
+  * you will need to add teleplug to your pipeline
 - Absinthe - to trace your GraphQL resolutions in a single span
   * you need to install `opentelemetry_absinthe`
 - Ecto - to trace your database transactions in a single span
@@ -53,7 +54,7 @@ pipeline :example do
 end
 ```
 
-GraphQL and database spans are emitted automatically.
+GraphQL and database spans are emitted automatically as long as the relevant telemetry libraries are installed.
 
 To keep traces across elixir tasks you need to use `PrimaOpentelemetryEx.TeleTask` module that wraps `start/1`, `async/1` and `await/1`.
 
