@@ -1,6 +1,5 @@
 defmodule PrimaOpentelemetryEx do
   require Logger
-  alias Teleplug.Instrumentation
   alias PrimaOpentelemetryEx.Instrumentation
 
   @moduledoc """
