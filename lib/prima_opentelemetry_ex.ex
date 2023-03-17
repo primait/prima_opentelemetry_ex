@@ -1,5 +1,7 @@
 defmodule PrimaOpentelemetryEx do
   require Logger
+  alias Teleplug.Instrumentation
+  alias PrimaOpentelemetryEx.Instrumentation
 
   @moduledoc """
   Swiss knife module for opentelemetry instrumentation.
@@ -28,103 +30,18 @@ defmodule PrimaOpentelemetryEx do
     :ok
   end
 
-  defp enabled?(feature) do
+  @doc false
+  def enabled?(feature) do
     excluded_libraries = Application.get_env(:prima_opentelemetry_ex, :exclude, [])
     !Enum.member?(excluded_libraries, feature)
   end
 
   defp instrument do
-    maybe_setup_telepoison()
-    maybe_setup_teleplug()
-    maybe_setup_otel_absinthe()
-    maybe_setup_otel_ecto()
+    Instrumentation.Telepoison.maybe_setup()
+    Instrumentation.Teleplug.maybe_setup()
+    Instrumentation.OpentelemetryAbsinthe.maybe_setup()
+    Instrumentation.OpentelemetryEcto.maybe_setup()
   end
-
-  if Code.ensure_loaded?(Telepoison) do
-    def maybe_setup_telepoison, do: Telepoison.setup()
-  else
-    def maybe_setup_telepoison, do: nil
-  end
-
-  if Code.ensure_loaded?(Teleplug) do
-    def maybe_setup_teleplug, do: Teleplug.setup()
-  else
-    def maybe_setup_teleplug, do: nil
-  end
-
-  def maybe_setup_otel_absinthe do
-    enabled = enabled?(:absinthe)
-    absinthe_loaded = Code.ensure_loaded?(Absinthe)
-
-    maybe_setup_otel_absinthe(enabled, absinthe_loaded)
-  end
-
-  @spec maybe_setup_otel_absinthe(
-          enabled :: boolean(),
-          absinthe_loaded :: boolean()
-        ) :: nil
-  if Code.ensure_loaded?(OpentelemetryAbsinthe) do
-    def maybe_setup_otel_absinthe(true, _) do
-      :prima_opentelemetry_ex
-      |> Application.get_env(:graphql, [])
-      |> OpentelemetryAbsinthe.Instrumentation.setup()
-
-      nil
-    end
-  else
-    def maybe_setup_otel_absinthe(true, true) do
-      Logger.warn("""
-      Absinthe has been loaded without installing the optional opentelemetry_absinthe dependency.
-      PrimaOpentelemetryEx will not be able to instrument absinthe unless you add it.
-
-      Note: you can get rid of this warning by excluding absinthe from instrumentation with `config :prima_opentelemetry_ex, exclude: [:absinthe]`
-      """)
-    end
-  end
-
-  def maybe_setup_otel_absinthe(_, _), do: nil
-
-  def maybe_setup_otel_ecto do
-    enabled = enabled?(:ecto)
-    ecto_loaded = Code.ensure_loaded?(Ecto)
-
-    maybe_setup_otel_ecto(enabled, ecto_loaded)
-  end
-
-  @spec maybe_setup_otel_ecto(
-          enabled :: boolean(),
-          ecto_loaded :: boolean()
-        ) :: nil
-  if Code.ensure_loaded?(OpentelemetryEcto) do
-    def instrument_repo(_event, _measurements, metadata, _config) do
-      metadata
-      |> Map.fetch!(:opts)
-      |> Keyword.fetch!(:telemetry_prefix)
-      |> OpentelemetryEcto.setup()
-    end
-
-    def maybe_setup_otel_ecto(true, _) do
-      :telemetry.attach(
-        "repo-init-handler",
-        [:ecto, :repo, :init],
-        &__MODULE__.instrument_repo/4,
-        %{}
-      )
-
-      nil
-    end
-  else
-    def maybe_setup_otel_ecto(true, true) do
-      Logger.warn("""
-      Ecto has been loaded without installing the optional opentelemetry_ecto dependency.
-      PrimaOpentelemetryEx will not be able to instrument ecto unless you add it.
-
-      Note: you can get rid of this warning by excluding absinthe from instrumentation with `config :prima_opentelemetry_ex, exclude: [:ecto]`
-      """)
-    end
-  end
-
-  def maybe_setup_otel_ecto(_, _), do: nil
 
   def set_resource do
     Application.put_env(
