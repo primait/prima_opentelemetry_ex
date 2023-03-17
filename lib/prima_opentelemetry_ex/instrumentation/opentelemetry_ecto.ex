@@ -2,7 +2,10 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryEcto do
   @moduledoc false
 
   cond do
-    Code.ensure_loaded?(OpentelemetryEcto) ->
+    not PrimaOpentelemetryEx.enabled?(:ecto) ->
+      def maybe_setup, do: nil
+
+     Code.ensure_loaded?(OpentelemetryEcto) ->
       def maybe_setup do
         :telemetry.attach(
           "repo-init-handler",
@@ -19,7 +22,7 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryEcto do
         |> OpentelemetryEcto.setup()
       end
 
-    Code.ensure_loaded?(Ecto) and PrimaOpentelemetryEx.enabled?(:ecto) ->
+    Code.ensure_loaded?(Ecto) ->
       raise """
       Ecto has been loaded without installing the optional opentelemetry_ecto dependency.
       PrimaOpentelemetryEx will not be able to instrument ecto unless you add it.
