@@ -2,7 +2,7 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryAbsinthe do
   @moduledoc false
 
   cond do
-    not PrimaOpentelemetryEx.enabled?(:absinthe) -> 
+    not PrimaOpentelemetryEx.enabled?(:absinthe) ->
       def maybe_setup, do: nil
 
      Code.ensure_loaded?(OpentelemetryAbsinthe) ->
