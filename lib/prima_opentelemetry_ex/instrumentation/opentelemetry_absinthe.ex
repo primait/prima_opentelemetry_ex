@@ -5,7 +5,7 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryAbsinthe do
     not PrimaOpentelemetryEx.enabled?(:absinthe) ->
       def maybe_setup, do: nil
 
-     Code.ensure_loaded?(OpentelemetryAbsinthe) ->
+    Code.ensure_loaded?(OpentelemetryAbsinthe) ->
       def maybe_setup do
         :prima_opentelemetry_ex
         |> Application.get_env(:graphql, [])
@@ -14,7 +14,7 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryAbsinthe do
         nil
       end
 
-     Code.ensure_loaded?(Absinthe) ->
+    Code.ensure_loaded?(Absinthe) ->
       raise """
       Absinthe has been loaded without installing the optional opentelemetry_absinthe dependency.
       PrimaOpentelemetryEx will not be able to instrument absinthe unless you add it.
