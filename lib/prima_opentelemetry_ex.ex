@@ -1,11 +1,15 @@
 defmodule PrimaOpentelemetryEx do
+  require Logger
+  alias PrimaOpentelemetryEx.Instrumentation
+
   @moduledoc """
   Swiss knife module for opentelemetry instrumentation.
-  It can be used to setup instrument:
+  It can be used to setup instrumentation with:
   - Teleplug
   - Telepoison
   - OpentelemetryAbsinthe
   - OpentelemetryEcto
+  (the libraries need to be installed separately)
   """
 
   @doc """
@@ -25,35 +29,17 @@ defmodule PrimaOpentelemetryEx do
     :ok
   end
 
-  defp enabled?(feature) do
+  @doc false
+  def enabled?(feature) do
     excluded_libraries = Application.get_env(:prima_opentelemetry_ex, :exclude, [])
     !Enum.member?(excluded_libraries, feature)
   end
 
   defp instrument do
-    Telepoison.setup()
-    Teleplug.setup()
-
-    if enabled?(:absinthe) do
-      Application.get_env(:prima_opentelemetry_ex, :graphql, [])
-      |> OpentelemetryAbsinthe.Instrumentation.setup()
-    end
-
-    if enabled?(:ecto) do
-      :telemetry.attach(
-        "repo-init-handler",
-        [:ecto, :repo, :init],
-        &__MODULE__.instrument_repo/4,
-        %{}
-      )
-    end
-  end
-
-  def instrument_repo(_event, _measurements, metadata, _config) do
-    metadata
-    |> Map.fetch!(:opts)
-    |> Keyword.fetch!(:telemetry_prefix)
-    |> OpentelemetryEcto.setup()
+    Instrumentation.Telepoison.maybe_setup()
+    Instrumentation.Teleplug.maybe_setup()
+    Instrumentation.OpentelemetryAbsinthe.maybe_setup()
+    Instrumentation.OpentelemetryEcto.maybe_setup()
   end
 
   def set_resource do
