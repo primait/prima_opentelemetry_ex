@@ -21,5 +21,8 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryAbsinthe do
 
       Note: you can get rid of this warning by excluding absinthe from instrumentation with `config :prima_opentelemetry_ex, exclude: [:absinthe]`
       """
+
+    true ->
+      def maybe_setup, do: nil
   end
 end
