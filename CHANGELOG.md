@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+---
+
+## [2.0.0] - 2023-03-23
+
 ### Changed
 
-- Teleplug, telepoison and opentelemetry_absinthe are now optional dependencies. 
+- Teleplug, telepoison, opentelemetry_absinthe and opentelemetry_ecto are now optional dependencies.
   In order to migrate from the previous version of prima_opentelemetry_ex you will have to add the dependencies explicitly in your mix.exs.
-  *Warning*: If you don't add opentelemetry_absinthe or opentelemetry_ecto it will not cause a compile time error, instead absinthe/ecto will not be instrumented and a warning will be logged.
+  *Warning*: If you don't add opentelemetry_absinthe or opentelemetry_ecto cause a compile time error.
 
 ---
 
@@ -166,7 +170,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.3...HEAD
+
+[Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.3...2.0.0
 [1.1.3]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/primait/prima_opentelemetry_ex/compare/1.1.0...1.1.1
