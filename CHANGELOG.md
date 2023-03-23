@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Teleplug, telepoison and opentelemetry_absinthe are now optional dependencies. 
+- Teleplug, telepoison, opentelemetry_absinthe and opentelemetry_ecto are now optional dependencies.
   In order to migrate from the previous version of prima_opentelemetry_ex you will have to add the dependencies explicitly in your mix.exs.
-  *Warning*: If you don't add opentelemetry_absinthe or opentelemetry_ecto it will not cause a compile time error, instead absinthe/ecto will not be instrumented and a warning will be logged.
+  *Warning*: If you don't add opentelemetry_absinthe or opentelemetry_ecto cause a compile time error.
 
 ---
 
