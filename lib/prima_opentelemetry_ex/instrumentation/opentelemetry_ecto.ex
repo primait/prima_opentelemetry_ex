@@ -11,7 +11,7 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryEcto do
             &__MODULE__.instrument_repo/4,
             %{}
           )
-        else
+
           nil
         end
       end

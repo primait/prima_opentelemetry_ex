@@ -8,7 +8,7 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryAbsinthe do
           :prima_opentelemetry_ex
           |> Application.get_env(:graphql, [])
           |> OpentelemetryAbsinthe.Instrumentation.setup()
-        else
+
           nil
         end
       end
