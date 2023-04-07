@@ -4,15 +4,15 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryEcto do
   cond do
     Code.ensure_loaded?(OpentelemetryEcto) ->
       def maybe_setup do
-        if not PrimaOpentelemetryEx.enabled?(:ecto) do
-          nil
-        else
+        if PrimaOpentelemetryEx.enabled?(:ecto) do
           :telemetry.attach(
             "repo-init-handler",
             [:ecto, :repo, :init],
             &__MODULE__.instrument_repo/4,
             %{}
           )
+        else
+          nil
         end
       end
 

@@ -4,12 +4,12 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryAbsinthe do
   cond do
     Code.ensure_loaded?(OpentelemetryAbsinthe) ->
       def maybe_setup do
-        if not PrimaOpentelemetryEx.enabled?(:absinthe) do
-          nil
-        else
+        if PrimaOpentelemetryEx.enabled?(:absinthe) do
           :prima_opentelemetry_ex
           |> Application.get_env(:graphql, [])
           |> OpentelemetryAbsinthe.Instrumentation.setup()
+        else
+          nil
         end
       end
 
