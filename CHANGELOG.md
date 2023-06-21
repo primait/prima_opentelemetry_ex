@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Country tag is now added based on the `COUNTRY` env var
+
 ---
 
 ## [2.0.1] - 2023-04-07
@@ -177,7 +181,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Initial release
-
 
 [Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.1...HEAD
 [2.0.1]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.0...2.0.1
