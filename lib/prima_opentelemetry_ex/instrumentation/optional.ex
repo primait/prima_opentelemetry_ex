@@ -23,8 +23,14 @@ defmodule PrimaOpentelemetryEx.Instrumentation.Optional do
            ) do
     quote do
       cond do
+        # First check if the feature is enabled on compile time
+        not PrimaOpentelemetryEx.enabled?(unquote(feature_name)) ->
+          def maybe_setup, do: nil
+
         Code.ensure_loaded?(unquote(instrumenting_library)) ->
           def maybe_setup do
+
+            # Runtime check to make sure the feature is enabled on runtime time
             if PrimaOpentelemetryEx.enabled?(unquote(feature_name)) do
               unquote(setup_instrumentation)
               nil
