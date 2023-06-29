@@ -11,7 +11,7 @@ defmodule PrimaOpentelemetryEx.Instrumentation.Optional do
     
     * `to_instrument`: the module that will be instrumented(eg. `Ecto`)
     * `instrumenting_library`: the module that will be used to instrument(eg. `OpentelemetryEcto`)
-    * `feature_name`: atom specifing the name of the feature. Typically the name of the to_instrument library in atom format(eg. `:ecto`)
+    * `feature_name`: atom specifying the name of the feature. Typically the name of the to_instrument library in atom format(eg. `:ecto`)
   """
   defmacro create(
              [
