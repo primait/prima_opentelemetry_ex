@@ -4,9 +4,9 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryEcto do
   alias PrimaOpentelemetryEx.Instrumentation.Optional
   require Optional
 
-  Optional.create to_instrument: Ecto,
-                  instrumenting_library: OpentelemetryEcto,
-                  feature_name: :ecto do
+  Optional.instrument Ecto,
+    with: OpentelemetryEcto,
+    feature: :ecto do
     :telemetry.attach(
       "repo-init-handler",
       [:ecto, :repo, :init],

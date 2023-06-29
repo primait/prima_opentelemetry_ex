@@ -3,9 +3,9 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryAbsinthe do
   alias PrimaOpentelemetryEx.Instrumentation.Optional
   require Optional
 
-  Optional.create to_instrument: Absinthe,
-                  instrumenting_library: OpentelemetryAbsinthe,
-                  feature_name: :absinthe do
+  Optional.instrument Absinthe,
+    with: OpentelemetryAbsinthe,
+    feature: :absinthe do
     :prima_opentelemetry_ex
     |> Application.get_env(:graphql, [])
     |> OpentelemetryAbsinthe.Instrumentation.setup()
