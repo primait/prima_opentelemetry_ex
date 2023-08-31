@@ -8,7 +8,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
     [
       app: :prima_opentelemetry_ex,
       version: @version,
-      elixir: "~> 1.11",
+      elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: [
@@ -64,7 +64,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
   defp dev_deps do
     [
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:dialyxir, "1.3.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "1.4.0", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.25.3", only: :dev, runtime: false},
       {:mock, "~> 0.3.7", only: :test}
     ]
