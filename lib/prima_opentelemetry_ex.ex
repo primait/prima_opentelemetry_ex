@@ -36,7 +36,6 @@ defmodule PrimaOpentelemetryEx do
   end
 
   defp instrument do
-    Instrumentation.Telepoison.maybe_setup()
     Instrumentation.Teleplug.maybe_setup()
     Instrumentation.OpentelemetryAbsinthe.maybe_setup()
     Instrumentation.OpentelemetryEcto.maybe_setup()
