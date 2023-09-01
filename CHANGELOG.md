@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Remove Telepoison.setup function call being deprecated.
+- Removed Telepoison.setup function call, which is deprecated.
+- Removed telepoison dependency.
 
 ---
 
