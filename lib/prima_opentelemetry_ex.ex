@@ -1,5 +1,6 @@
 defmodule PrimaOpentelemetryEx do
   require Logger
+
   alias PrimaOpentelemetryEx.Instrumentation
 
   @moduledoc """
@@ -48,7 +49,8 @@ defmodule PrimaOpentelemetryEx do
       %{
         "country" => System.get_env("COUNTRY", "undefined"),
         "deployment.environment" => System.get_env("APP_ENV", "dev"),
-        "service.name" => System.get_env("APP_NAME", "prima-opentelemetry-service"),
+        "service.name" =>
+          System.get_env("APP_NAME", "prima-opentelemetry-service") |> Recase.to_kebab(),
         "service.version" => System.get_env("VERSION", "0.0.0-dev")
       }
     )
