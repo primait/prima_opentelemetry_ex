@@ -12,8 +12,8 @@ defmodule PrimaOpentelemetryEx.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: [
-        plt_add_apps: [:mix, :ex_unit],
-        plt_add_deps: :transitive,
+        plt_add_apps: [:mix, :ex_unit, :opentelemetry_ecto, :teleplug],
+        plt_add_deps: :app_tree,
         ignore_warnings: ".dialyzer_ignore.exs",
         list_unused_filters: true
       ],
@@ -64,7 +64,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
   defp dev_deps do
     [
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:dialyxir, "1.4.1", only: [:dev, :test], runtime: false},
+      {:dialyxir, "1.4.2", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.25.3", only: :dev, runtime: false},
       {:mock, "~> 0.3.7", only: :test}
     ]
