@@ -12,7 +12,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: [
-        plt_add_apps: [:mix, :ex_unit],
+        plt_add_apps: [:mix, :ex_unit, :opentelemetry_ecto, :teleplug],
         plt_add_deps: :app_tree,
         ignore_warnings: ".dialyzer_ignore.exs",
         list_unused_filters: true
