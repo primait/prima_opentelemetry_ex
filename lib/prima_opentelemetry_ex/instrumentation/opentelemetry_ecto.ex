@@ -11,11 +11,11 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryEcto do
       "repo-init-handler",
       [:ecto, :repo, :init],
       fn _event, _measurements, metadata, _config ->
-    	metadata
-    	|> Map.fetch!(:opts)
-    	|> Keyword.fetch!(:telemetry_prefix)
-    	|> OpentelemetryEcto.setup()
-  	end,
+        metadata
+        |> Map.fetch!(:opts)
+        |> Keyword.fetch!(:telemetry_prefix)
+        |> OpentelemetryEcto.setup()
+      end,
       %{}
     )
   end
