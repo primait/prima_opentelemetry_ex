@@ -16,12 +16,13 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: cache-restore
-  image: public.ecr.aws/prima/drone-tools:1.21.2
+  image: public.ecr.aws/prima/drone-tools:1.22.8
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-restore
   environment:
     BUCKET_NAME: prima-ci-cache
+    CACHE_COMPRESSION_ALGO: gz
   volumes:
   - name: ecs
     path: /etc/profile.d/ecs-credentials-endpoint
@@ -31,7 +32,7 @@ steps:
   - git-clone
 
 - name: check-secrets
-  image: public.ecr.aws/prima/drone-tools:1.21.2
+  image: public.ecr.aws/prima/drone-tools:1.22.8
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - check-secrets-grants
@@ -42,17 +43,19 @@ steps:
   - git-clone
 
 - name: check-public-docker-images
-  image: public.ecr.aws/prima/drone-tools:1.21.2
+  image: public.ecr.aws/prima/drone-tools:1.22.8
   commands:
   - check-public-docker-images
   depends_on:
   - git-clone
 
 - name: build-image
-  image: public.ecr.aws/prima/drone-tools:1.21.2
+  image: public.ecr.aws/prima/drone-tools:1.22.8
   commands:
   - sed -i 's/USER app/USER root/g' ./Dockerfile
   - docker build -t prima/prima_opentelemetry_ex-ci:${DRONE_COMMIT} ./
+  environment:
+    DOCKER_DEFAULT_PLATFORM: linux/amd64
   volumes:
   - name: docker
     path: /var/run/docker.sock
@@ -69,7 +72,7 @@ steps:
 - name: elixir-compile
   image: prima/prima_opentelemetry_ex-ci:${DRONE_COMMIT}
   commands:
-  - mix compile --all-warnings --warnings-as-errors --ignore-module-conflict --debug-info
+  - mix do clean, compile --all-warnings --warnings-as-errors --ignore-module-conflict --debug-info
   environment:
     MIX_ENV: test
   depends_on:
@@ -121,12 +124,13 @@ steps:
   - elixir-compile
 
 - name: cache-save
-  image: public.ecr.aws/prima/drone-tools:1.21.2
+  image: public.ecr.aws/prima/drone-tools:1.22.8
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-save _build deps
   environment:
     BUCKET_NAME: prima-ci-cache
+    CACHE_COMPRESSION_ALGO: gz
   volumes:
   - name: ecs
     path: /etc/profile.d/ecs-credentials-endpoint
@@ -173,12 +177,13 @@ steps:
     PLUGIN_DEPTH: 5
 
 - name: cache-restore
-  image: public.ecr.aws/prima/drone-tools:1.21.2
+  image: public.ecr.aws/prima/drone-tools:1.22.8
   commands:
   - . /etc/profile.d/ecs-credentials-endpoint
   - cache-restore
   environment:
     BUCKET_NAME: prima-ci-cache
+    CACHE_COMPRESSION_ALGO: gz
   volumes:
   - name: ecs
     path: /etc/profile.d/ecs-credentials-endpoint
@@ -188,10 +193,12 @@ steps:
   - git-clone
 
 - name: build-image
-  image: public.ecr.aws/prima/drone-tools:1.21.2
+  image: public.ecr.aws/prima/drone-tools:1.22.8
   commands:
   - sed -i 's/USER app/USER root/g' ./Dockerfile
   - docker build -t prima/prima_opentelemetry_ex-ci:${DRONE_COMMIT} ./
+  environment:
+    DOCKER_DEFAULT_PLATFORM: linux/amd64
   volumes:
   - name: docker
     path: /var/run/docker.sock
@@ -249,6 +256,7 @@ steps:
       from_secret: email_password
     PLUGIN_USERNAME:
       from_secret: email_username
+  failure: ignore
 
 trigger:
   status:
@@ -265,6 +273,6 @@ depends_on:
 
 ---
 kind: signature
-hmac: 8c119edb6c4456407fda793a482b9abfee7a154a754db7253a39a1c40ce30aa6
+hmac: aa03d23ca348dfba580668f94d98b39b7506f8a6fca30cb7ce122a30d65a98a5
 
 ...
