@@ -10,7 +10,7 @@ This is your one-stop source of all things opentelemetry in elixir.
 Add
 
 ```elixir
-    {:prima_opentelemetry_ex, "~> 1.0.0"}
+    {:prima_opentelemetry_ex, "~> 2.0"}
 ```
 
 and the respective telemetry libraries to your dependencies and you are good to go.
