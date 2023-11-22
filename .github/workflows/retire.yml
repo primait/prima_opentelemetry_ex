@@ -38,11 +38,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: '26'
-          elixir-version: '1.15'
+          otp-version: '24'
+          elixir-version: '1.12'
       - run: echo "Attempting to retire version $VERSION"
       - run: mix hex.config api_key "$HEX_AUTH_KEY"
         env:
           HEX_AUTH_KEY: ${{ secrets.HEX_AUTH_KEY }}
       - run: mix hex.user whoami
-      - run: mix hex.retire  "$VERSION" "$REASON" --message "$MESSAGE"
+      - run: mix hex.retire prima_opentelemetry_ex "$VERSION" "$REASON" --message "$MESSAGE"
