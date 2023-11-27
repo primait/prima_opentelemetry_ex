@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Fix compile error, thanks to @23Skidoo
+
 ---
 
 ## [2.0.5] - 2023-09-22
@@ -210,7 +214,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Initial release
-
 
 [Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.5...HEAD
 [2.0.5]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.4...2.0.5
