@@ -2,7 +2,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
   use Mix.Project
 
   @source_url "https://github.com/primait/prima_opentelemetry_ex"
-  @version "2.0.5"
+  @version "2.0.6"
 
   def project do
     [
