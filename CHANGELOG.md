@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- `service.name` and `country` no longer default to a value
+
+### Added
+
+- Traces now have metadata attached based on the kubernetes environment variables(if present):
+  * KUBE_APP_PART_OF
+  * KUBE_APP_MANAGED_BY
+  * KUBE_APP_VERSION
+  * KUBE_APP_INSTANCE
+
 ---
 
 ## [2.0.6] - 2023-11-27
