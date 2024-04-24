@@ -43,17 +43,32 @@ defmodule PrimaOpentelemetryEx do
   end
 
   def set_resource do
+    app_name = System.get_env("APP_NAME", "prima-opentelemetry-service")
+    app_name = if app_name, do: Recase.to_kebab(app_name), else: nil
+
+    version = System.get_env("VERSION", System.get_env("KUBE_APP_VERSION", "0.0.0-dev"))
+
+    resource =
+      %{}
+      |> Map.put("deployment.environment", System.get_env("APP_ENV", "dev"))
+      |> Map.put("service.version", version)
+      |> put_if_not_nil("country", System.get_env("COUNTRY"))
+      |> put_if_not_nil("service.name", app_name)
+      |> put_if_not_nil("kube_app.part_of", System.get_env("KUBE_APP_PART_OF"))
+      |> put_if_not_nil("kube_app.managed_by", System.get_env("KUBE_APP_MANAGED_BY"))
+      |> put_if_not_nil("kube_app.instance", System.get_env("KUBE_APP_INSTANCE"))
+      # Threat these as defaults and allow others to overwrite these variables
+      |> Map.merge(Application.get_env(:opentelemetry, :resource, %{}))
+
     Application.put_env(
       :opentelemetry,
       :resource,
-      %{
-        "country" => System.get_env("COUNTRY", "undefined"),
-        "deployment.environment" => System.get_env("APP_ENV", "dev"),
-        "service.name" =>
-          System.get_env("APP_NAME", "prima-opentelemetry-service") |> Recase.to_kebab(),
-        "service.version" => System.get_env("VERSION", "0.0.0-dev")
-      }
+      resource
     )
+  end
+
+  defp put_if_not_nil(map, key, val) do
+    if val != nil, do: Map.put(map, key, val), else: map
   end
 
   defp set_processor do
