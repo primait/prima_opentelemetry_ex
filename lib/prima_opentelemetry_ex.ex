@@ -57,7 +57,7 @@ defmodule PrimaOpentelemetryEx do
       |> put_if_not_nil("kube_app.part_of", System.get_env("KUBE_APP_PART_OF"))
       |> put_if_not_nil("kube_app.managed_by", System.get_env("KUBE_APP_MANAGED_BY"))
       |> put_if_not_nil("kube_app.instance", System.get_env("KUBE_APP_INSTANCE"))
-      # Threat these as defaults and allow others to overwrite these variables
+      # Treat these as defaults and allow others to overwrite these variables
       |> Map.merge(Application.get_env(:opentelemetry, :resource, %{}))
 
     Application.put_env(
