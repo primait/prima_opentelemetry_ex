@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.0] - 2024-05-03
+
+No changes since 2.1.0-pre.0
+
+---
+
 ## [2.1.0-pre.0] - 2024-04-25
 
 ### Changed
@@ -237,7 +243,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-[Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.0-pre.0...HEAD
+
+[Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.0...HEAD
+[2.1.0]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.0-pre.0...2.1.0
 [2.1.0-pre.0]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.6...2.1.0-pre.0
 [2.0.6]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.5...2.0.6
 [2.0.5]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.4...2.0.5
