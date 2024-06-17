@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.1] - 2024-06-17
+
+### Fixed
+
+- Fix warning on attaching an anonymous function to telemetry [#116](https://github.com/primait/prima_opentelemetry_ex/pull/116) by @hizumisen
+
+---
+
 ## [2.1.0] - 2024-05-03
 
 No changes since 2.1.0-pre.0
@@ -24,10 +32,10 @@ No changes since 2.1.0-pre.0
 ### Added
 
 - Traces now have metadata attached based on the kubernetes environment variables(if present):
-  * KUBE_APP_PART_OF
-  * KUBE_APP_MANAGED_BY
-  * KUBE_APP_VERSION
-  * KUBE_APP_INSTANCE
+  - KUBE_APP_PART_OF
+  - KUBE_APP_MANAGED_BY
+  - KUBE_APP_VERSION
+  - KUBE_APP_INSTANCE
 
 ---
 
@@ -244,7 +252,9 @@ No changes since 2.1.0-pre.0
 
 
 
-[Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.0...HEAD
+
+[Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.1...HEAD
+[2.1.1]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.0-pre.0...2.1.0
 [2.1.0-pre.0]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.6...2.1.0-pre.0
 [2.0.6]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.5...2.0.6
