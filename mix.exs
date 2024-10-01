@@ -64,7 +64,7 @@ defmodule PrimaOpentelemetryEx.MixProject do
   defp dev_deps do
     [
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:dialyxir, "1.4.3", only: [:dev, :test], runtime: false},
+      {:dialyxir, "1.4.4", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.25.3", only: :dev, runtime: false},
       {:mock, "~> 0.3.7", only: :test}
     ]
