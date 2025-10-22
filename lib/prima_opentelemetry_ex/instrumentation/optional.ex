@@ -39,7 +39,7 @@ defmodule PrimaOpentelemetryEx.Instrumentation.Optional do
         Code.ensure_loaded?(unquote(to_instrument)) ->
           raise """
           #{unquote(to_instrument)} has been loaded without installing the optional #{unquote(instrumenting_library)} dependency.
-          PrimaOpentelemetryEx will not be able to instrument absinthe unless you add it.
+          PrimaOpentelemetryEx will not be able to instrument #{unquote(feature_name)} unless you add it.
 
           Note: you can get rid of this warning by excluding absinthe from instrumentation with `config :prima_opentelemetry_ex, exclude: [:#{unquote(feature_name)}]`
           """
