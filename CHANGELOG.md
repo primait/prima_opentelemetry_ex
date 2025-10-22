@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.3] - 2025-10-22
+
+## Fixed
+
+- Fix log when optional dependency is missing: now the actual feature is mentioned, instead of absinthe
+
+---
+
 ## [2.1.2] - 2024-12-12
 
 - Teleplug can now be ~> 2.0
@@ -259,7 +267,9 @@ No changes since 2.1.0-pre.0
 
 
 
-[Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.1...HEAD
+
+[Unreleased]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.3...HEAD
+[2.1.3]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.2...2.1.3
 [2.1.1]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/primait/prima_opentelemetry_ex/compare/2.1.0-pre.0...2.1.0
 [2.1.0-pre.0]: https://github.com/primait/prima_opentelemetry_ex/compare/2.0.6...2.1.0-pre.0
