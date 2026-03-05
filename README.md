@@ -152,7 +152,7 @@ All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`
 
 ### Ecto
 
-You can replace the default span prefix and choose which informations about you want traced; e.g.
+You can replace the default span prefix and choose which information about what you want traced; e.g.
 
 ``` elixir
 config :prima_opentelemetry_ex, :ecto,
