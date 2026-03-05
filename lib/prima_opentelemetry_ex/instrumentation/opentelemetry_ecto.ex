@@ -8,7 +8,7 @@ defmodule PrimaOpentelemetryEx.Instrumentation.OpentelemetryEcto do
     metadata
     |> Map.fetch!(:opts)
     |> Keyword.fetch!(:telemetry_prefix)
-    |> OpentelemetryEcto.setup()
+    |> OpentelemetryEcto.setup(Application.get_env(:prima_opentelemetry_ex, :ecto, []))
   end
 
   Optional.instrument Ecto,

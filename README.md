@@ -149,6 +149,19 @@ config :prima_opentelemetry_ex, :graphql,
 
 All the `:graphql` configurations get passed directly to `OpentelemetryAbsinthe`. For more informations about what you can do with them, see opentelemetry_absinthe [readme](https://github.com/primait/opentelemetry_absinthe#readme)
 
+
+### Ecto
+
+You can replace the default span prefix and choose which informations about you want traced; e.g.
+
+``` elixir
+config :prima_opentelemetry_ex, :ecto,
+    span_prefix: "ecto_sql",
+    db_statement: :enabled
+```
+
+All the `:ecto` configurations get passed directly to `OpentelemetryEcto`. For more informations about what you can do with them, see opentelemetry_ecto [readme](https://hexdocs.pm/opentelemetry_ecto/OpentelemetryEcto.html#setup/2)
+
 ## Copyright and License
 
 Copyright (c) 2020 Prima.it
