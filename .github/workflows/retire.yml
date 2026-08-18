@@ -33,7 +33,7 @@ jobs:
       REASON: ${{ inputs.reason }}
       VERSION: ${{ inputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: erlef/setup-beam@5304e04ea2b355f03681464e683d92e3b2f18451 # ratchet:erlef/setup-beam@v1
         with:
           otp-version: '25'
