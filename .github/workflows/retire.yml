@@ -33,8 +33,8 @@ jobs:
       REASON: ${{ inputs.reason }}
       VERSION: ${{ inputs.version }}
     steps:
-      - uses: actions/checkout@v7
-      - uses: erlef/setup-beam@5304e04ea2b355f03681464e683d92e3b2f18451 # ratchet:erlef/setup-beam@v1
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@54075bcc5e249e4758d363f27d099f55d843f124 # ratchet:erlef/setup-beam@v1
         with:
           otp-version: '25'
           elixir-version: '1.14'
